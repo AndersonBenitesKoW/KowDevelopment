@@ -1,0 +1,29 @@
+<h2 class="section-title">Bitcoin y Criptomonedas</h2>
+
+<p class="muted">Últimas noticias sobre Bitcoin, criptomonedas y el mundo blockchain.</p>
+
+<div *ngIf="loading" class="loading">
+  <p>Cargando noticias...</p>
+</div>
+
+<div *ngIf="error" class="error">
+  <p>{{ error }}</p>
+  <p><small>Nota: Necesitas configurar una API key de NewsAPI en el servicio de noticias.</small></p>
+</div>
+
+<div *ngIf="!loading && !error" class="news-grid">
+  <article *ngFor="let article of articles" class="news-card">
+    <div class="news-image" *ngIf="article.urlToImage">
+      <img [src]="article.urlToImage" [alt]="article.title" loading="lazy" />
+    </div>
+    <div class="news-content">
+      <h3>{{ article.title }}</h3>
+      <p class="news-meta">
+        <span class="source">{{ article.source.name }}</span>
+        <span class="date">{{ formatDate(article.publishedAt) }}</span>
+      </p>
+      <p class="news-description">{{ article.description }}</p>
+      <a [href]="article.url" target="_blank" class="read-more">Leer más →</a>
+    </div>
+  </article>
+</div>

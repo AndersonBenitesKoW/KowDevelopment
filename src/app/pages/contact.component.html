@@ -1,0 +1,161 @@
+<section class="contact-hero">
+  <div class="container">
+    <div class="hero-content">
+      <h1>¿Tienes una pregunta?</h1>
+      <p class="hero-subtitle">
+        Estamos aquí para ayudarte. Contáctanos y te responderemos lo antes posible.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="contact-main">
+  <div class="container">
+    <div class="contact-grid">
+      <!-- Formulario de contacto -->
+      <div class="contact-form-wrapper">
+        <div class="form-header">
+          <h2>Envíanos un mensaje</h2>
+          <p>Completa el formulario y nos pondremos en contacto contigo pronto</p>
+        </div>
+
+        <form class="contact-form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="c-name">Nombre completo *</label>
+              <input
+                id="c-name"
+                type="text"
+                formControlName="nombre"
+                placeholder="Tu nombre completo"
+                [class.error]="sent && form.get('nombre')?.invalid"
+                autocomplete="name"
+                required
+              />
+              <div class="error-message" *ngIf="sent && form.get('nombre')?.hasError('required')">
+                El nombre es obligatorio
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="c-email">Correo electrónico *</label>
+              <input
+                id="c-email"
+                type="email"
+                formControlName="email"
+                placeholder="tu@email.com"
+                [class.error]="sent && form.get('email')?.invalid"
+                autocomplete="email"
+                required
+              />
+              <div class="error-message" *ngIf="sent && form.get('email')?.errors as e">
+                <ng-container *ngIf="e['required']">El email es obligatorio</ng-container>
+                <ng-container *ngIf="e['email']">El formato del email no es válido</ng-container>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="c-subject">Asunto</label>
+            <input
+              id="c-subject"
+              type="text"
+              formControlName="asunto"
+              placeholder="¿De qué se trata tu consulta?"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="c-msg">Mensaje *</label>
+            <textarea
+              id="c-msg"
+              rows="6"
+              formControlName="mensaje"
+              placeholder="Cuéntanos más detalles sobre tu consulta o proyecto..."
+              [class.error]="sent && form.get('mensaje')?.invalid"
+              required
+            ></textarea>
+            <div class="error-message" *ngIf="sent && form.get('mensaje')?.hasError('required')">
+              El mensaje es obligatorio
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="submit-btn">
+              <span>Enviar mensaje</span>
+              <i class="arrow">→</i>
+            </button>
+          </div>
+
+          <div class="success-message" *ngIf="sent && form.valid">
+            ✓ ¡Mensaje enviado! Te responderemos pronto.
+          </div>
+        </form>
+      </div>
+
+      <!-- Información de contacto -->
+      <div class="contact-info">
+        <div class="info-card">
+          <div class="info-icon">✉️</div>
+          <h3>Email</h3>
+          <p>info@polylinewebfactory.com</p>
+          <p>soporte@polylinewebfactory.com</p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon">📞</div>
+          <h3>Teléfono</h3>
+          <p>+1 (555) 123-4567</p>
+          <p>Lun - Vie: 9:00 AM - 6:00 PM</p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon">🌍</div>
+          <h3>Redes sociales</h3>
+          <div class="social-links">
+            <a href="#" class="social-link">Twitter</a>
+            <a href="#" class="social-link">LinkedIn</a>
+            <a href="#" class="social-link">Facebook</a>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon">⚡</div>
+          <h3>Tiempo de respuesta</h3>
+          <p>Respondemos en menos de 2 horas durante horario laboral</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-faq">
+  <div class="container">
+    <div class="section-header">
+      <h2>Preguntas frecuentes</h2>
+      <p>Encuentra respuestas rápidas a las consultas más comunes</p>
+    </div>
+
+    <div class="faq-grid">
+      <div class="faq-item">
+        <h3>¿Cuánto tiempo toma crear un sitio web?</h3>
+        <p>Dependiendo de la complejidad, entre 1-4 semanas. Los sitios simples pueden estar listos en pocos días.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>¿Ofrecen soporte después del lanzamiento?</h3>
+        <p>Sí, todos nuestros planes incluyen soporte técnico y mantenimiento continuo.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>¿Puedo cambiar mi plan más adelante?</h3>
+        <p>Por supuesto, puedes actualizar o cambiar tu plan en cualquier momento según tus necesidades.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>¿Los sitios son responsive?</h3>
+        <p>Todos nuestros sitios están optimizados para verse perfectamente en móviles, tablets y escritorio.</p>
+      </div>
+    </div>
+  </div>
+</section>

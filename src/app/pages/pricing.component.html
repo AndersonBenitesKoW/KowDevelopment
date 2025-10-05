@@ -1,0 +1,58 @@
+<section class="pricing-hero">
+  <div class="container">
+    <div class="hero-content">
+      <h1>Planes y Precios</h1>
+      <p class="hero-subtitle">Elige el plan perfecto para tu proyecto. Todos incluyen hosting, SSL y soporte técnico.</p>
+    </div>
+  </div>
+</section>
+
+<section class="pricing-plans">
+  <div class="container">
+    <div class="plans-grid">
+      <div class="plan-card" *ngFor="let p of plans" [class.featured]="p.highlight">
+        <div class="plan-badge" *ngIf="p.highlight">
+          <span>Más Popular</span>
+        </div>
+        <div class="plan-header">
+          <h3>{{ p.name }}</h3>
+          <div class="plan-price">
+            <span class="currency">$</span>
+            <span class="amount">{{ p.price }}</span>
+            <span class="period">/mes</span>
+          </div>
+          <p class="plan-description">{{ p.description }}</p>
+        </div>
+        <div class="plan-features">
+          <ul>
+            <li *ngFor="let f of p.features">
+              <span class="check-icon">✓</span>
+              {{ f }}
+            </li>
+          </ul>
+        </div>
+        <div class="plan-action">
+          <button class="plan-btn" [class.btn-featured]="p.highlight">
+            Elegir {{ p.name }}
+          </button>
+          <p class="trial-text" *ngIf="p.highlight">14 días gratis</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing-faq">
+  <div class="container">
+    <div class="faq-header">
+      <h2>Preguntas Frecuentes</h2>
+      <p>Resolvemos tus dudas sobre nuestros planes</p>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-item" *ngFor="let faq of faqs">
+        <h4>{{ faq.question }}</h4>
+        <p>{{ faq.answer }}</p>
+      </div>
+    </div>
+  </div>
+</section>

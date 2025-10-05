@@ -1,0 +1,231 @@
+<section class="hero">
+  <div class="hero-container">
+    <div class="hero-content">
+      <h1>Crea tu web en minutos</h1>
+      <p class="hero-subtitle">Transforma tus ideas en una presencia online profesional con nuestra herramienta intuitiva y sin complicaciones.</p>
+      <div class="hero-cta">
+        <a routerLink="/cotizar" class="btn-primary">Empezar Gratis</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="mockup-container">
+        <div class="laptop-mockup">
+          <div class="laptop-screen">
+            <div class="website-preview">
+              <div class="preview-header">
+                <div class="preview-dots">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <div class="preview-url">miempresa.com</div>
+              </div>
+              <div class="preview-content">
+                <div class="preview-hero">
+                  <div class="preview-text">
+                    <div class="preview-title"></div>
+                    <div class="preview-subtitle"></div>
+                    <div class="preview-button"></div>
+                  </div>
+                  <div class="preview-image"></div>
+                </div>
+                <div class="preview-features">
+                  <div class="feature-card"></div>
+                  <div class="feature-card"></div>
+                  <div class="feature-card"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Video Presentation Section -->
+<section class="video-presentation">
+  <div class="container">
+    <div class="section-header">
+      <h2>Descubre cómo funciona POLYLINE</h2>
+      <p>Mira en acción cómo puedes crear tu sitio web profesional en minutos</p>
+    </div>
+    
+    <div class="video-container">
+      <div class="video-wrapper">
+        <video 
+          #presentationVideo
+          class="presentation-video"
+          poster="assets/video-poster.jpg"
+          (click)="togglePlayPause()"
+          (ended)="onVideoEnded()"
+          (timeupdate)="onTimeUpdate()">
+          <source src="./assets/presentation-video.mp4" type="video/mp4">
+          <source src="assets/presentation-video.webm" type="video/webm">
+          Tu navegador no soporta la reproducción de video.
+        </video>
+        
+        <!-- Video Overlay -->
+        <div class="video-overlay" [class.hidden]="isPlaying" (click)="playVideo()">
+          <div class="play-button">
+            <div class="play-icon" [class.playing]="isPlaying">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+          </div>
+          
+        </div>
+        
+        <!-- Video Controls -->
+        <div class="video-controls" [class.visible]="isPlaying">
+          <div class="progress-bar" (click)="seekTo($event)">
+            <div class="progress" [style.width.%]="progress"></div>
+            <div class="progress-handle" [style.left.%]="progress"></div>
+          </div>
+          
+          <div class="controls-row">
+            <button class="control-btn" (click)="togglePlayPause()">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path *ngIf="!isPlaying" d="M8 5v14l11-7z"/>
+                <path *ngIf="isPlaying" d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+              </svg>
+            </button>
+            
+            <div class="time-display">
+              <span>{{ formatTime(currentTime) }}</span>
+              <span>/</span>
+              <span>{{ formatTime(duration) }}</span>
+            </div>
+            
+            <div class="volume-control">
+              <button class="control-btn" (click)="toggleMute()">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path *ngIf="!isMuted" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                  <path *ngIf="isMuted" d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+                </svg>
+              </button>
+              <input 
+                type="range" 
+                class="volume-slider" 
+                min="0" 
+                max="100" 
+                [value]="volume"
+                (input)="setVolume($event)">
+            </div>
+            
+            <button class="control-btn" (click)="toggleFullscreen()">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="benefits">
+  <div class="container">
+    <div class="section-header">
+      <h2>Beneficios Clave</h2>
+      <p>Descubre por qué POLYLINE es la elección ideal para tu proyecto online</p>
+    </div>
+    
+    <div class="benefits-grid">
+      <div class="benefit-item" *ngFor="let benefit of benefits">
+        <div class="benefit-icon">{{ benefit.icon }}</div>
+        <h3>{{ benefit.title }}</h3>
+        <p>{{ benefit.desc }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process">
+  <div class="container">
+    <div class="section-header">
+      <h2>Cómo Funciona</h2>
+    </div>
+    
+    <div class="process-steps">
+      <div class="step" *ngFor="let step of processSteps; let i = index">
+        <div class="step-number">{{ i + 1 }}</div>
+        <h3>{{ step.title }}</h3>
+        <p>{{ step.desc }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="templates">
+  <div class="container">
+    <div class="section-header">
+      <h2>Plantillas Destacadas</h2>
+    </div>
+    
+    <div class="templates-grid">
+      <div class="template-card" *ngFor="let template of templates">
+        <div class="template-preview">
+          <div class="template-mockup">
+            <div class="mockup-header">
+              <div class="mockup-dots"></div>
+            </div>
+            <div class="mockup-content">
+              <div class="content-block primary"></div>
+              <div class="content-row">
+                <div class="content-block secondary"></div>
+                <div class="content-block secondary"></div>
+              </div>
+              <div class="content-block tertiary"></div>
+            </div>
+          </div>
+        </div>
+        <div class="template-info">
+          <h3>{{ template.name }}</h3>
+          <p>{{ template.desc }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="container">
+    <div class="section-header">
+      <h2>Testimonios</h2>
+    </div>
+    
+    <div class="testimonials-grid">
+      <div class="testimonial-card" *ngFor="let testimonial of testimonials">
+        <div class="testimonial-content">
+          <p>"{{ testimonial.text }}"</p>
+        </div>
+        <div class="testimonial-author">
+          <strong>{{ testimonial.author }}</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="stats-grid">
+    <div class="stat" *ngFor="let stat of stats">
+      <div class="stat-number">{{ stat.number }}</div>
+      <div class="stat-label">{{ stat.label }}</div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="cta-content">
+    <h2>¿Listo para tener tu web automáticamente?</h2>
+    <p class="muted">Únete a cientos de empresas que ya confían en nuestra tecnología</p>
+    <div class="cta-buttons">
+      <a routerLink="/cotizar" class="btn-lg">Comenzar ahora - Gratis</a>
+      <a routerLink="/plantillas" class="btn-lg alt">Ver ejemplos reales</a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,53 @@
+<div class="backdrop" *ngIf="menuOpen" (click)="toggleMenu($event)"></div>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" routerLink="/">
+      <img src="logo-polyline.png" alt="Polyline Logo" class="logo">
+      <strong>POLYLINE WebFactory</strong>
+    </a>
+
+  <!-- botón -->
+<button
+  class="hamburger"
+  aria-label="Abrir menú"
+  [attr.aria-expanded]="menuOpen"
+  (click)="toggleMenu($event)">
+  <span></span><span></span><span></span>
+</button>
+    <!-- menú -->
+<nav class="nav" [class.open]="menuOpen">
+  <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Inicio</a>
+  <a routerLink="plantillas" routerLinkActive="active">Plantillas</a>
+  <a routerLink="precios" routerLinkActive="active">Precios</a>
+  <a routerLink="cotizar" routerLinkActive="active">Cotizar</a>
+  <a routerLink="contacto" routerLinkActive="active">Contáctanos</a>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" (click)="toggleDropdown($event)">Noticias ▼</button>
+    <div class="dropdown-content" [class.show]="dropdownOpen">
+      <a routerLink="noticias/ia-tecnologia" routerLinkActive="active">IA y Tecnología</a>
+      <a routerLink="noticias/bitcoin" routerLinkActive="active">Bitcoin</a>
+      <a routerLink="noticias/negocios" routerLinkActive="active">Negocios y más</a>
+    </div>
+  </div>
+
+  <div class="auth-links">
+    <a routerLink="login" routerLinkActive="active" class="login-link">Iniciar Sesión</a>
+    <a routerLink="register" routerLinkActive="active" class="btn register-btn">Registrarse</a>
+  </div>
+</nav>
+  </div>
+</header>
+
+<main>
+  <router-outlet></router-outlet>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div>© {{ year() }} POLYLINE — WebFactory</div>
+    <div class="muted">Hecho con Angular</div>
+  </div>
+</footer>
+

@@ -1,0 +1,57 @@
+<section class="templates-hero">
+  <div class="container">
+    <div class="hero-content">
+      <h1>Galería de Plantillas</h1>
+      <p class="hero-subtitle">Descubre diseños profesionales creados para impulsar tu negocio online</p>
+    </div>
+  </div>
+</section>
+
+<section class="templates-search">
+  <div class="container">
+    <div class="search-wrapper">
+      <div class="search-input">
+        <input 
+          [(ngModel)]="q" 
+          name="q" 
+          placeholder="Buscar por industria: restaurante, hotel, consultora..." 
+          class="search-field"
+        />
+        <button class="search-btn" type="button">
+          <span>🔍</span>
+        </button>
+      </div>
+      <div class="search-filters">
+        <button class="filter-btn active">Todas</button>
+        <button class="filter-btn">Negocio</button>
+        <button class="filter-btn">E-commerce</button>
+        <button class="filter-btn">Portfolio</button>
+        <button class="filter-btn">Blog</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="templates-gallery">
+  <div class="container">
+    <div class="templates-grid">
+      <article class="template-card" *ngFor="let t of filtered; trackBy: trackById">
+        <div class="template-preview">
+          <img [src]="t.img" [alt]="t.name" class="template-image" />
+          <div class="template-overlay">
+            <button class="preview-btn">Vista previa</button>
+            <button class="use-btn">Usar plantilla</button>
+          </div>
+        </div>
+        <div class="template-info">
+          <h3>{{ t.name }}</h3>
+          <p>{{ t.descr }}</p>
+          <div class="template-tags">
+            <span class="tag">Responsive</span>
+            <span class="tag">SEO Ready</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
