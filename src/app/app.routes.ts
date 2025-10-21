@@ -11,6 +11,7 @@ import { NewsComponent } from './pages/news.component';
 import { NewsAiTecnologia } from './pages/news-ai-tecnologia/news-ai-tecnologia';
 import { NewsBitcoin } from './pages/news-bitcoin/news-bitcoin';
 import { NewsNegocios } from './pages/news-negocios/news-negocios';
+import { ClientesComponent } from './pages/clientes.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, title: 'Crea tu web | POLYLINE' },
@@ -24,5 +25,6 @@ export const routes: Routes = [
   { path: 'noticias/negocios', component: NewsNegocios, title: 'Negocios y Economía | POLYLINE' },
   { path: 'login', component: LoginComponent, title: 'Iniciar Sesión | POLYLINE' },
   { path: 'register', component: RegisterComponent, title: 'Crear Cuenta | POLYLINE' },
+  { path: 'clientes', component: ClientesComponent, title: 'Gestión de Clientes | POLYLINE' },
   { path: '**', redirectTo: '' },
 ];

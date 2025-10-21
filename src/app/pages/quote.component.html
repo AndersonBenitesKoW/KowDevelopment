@@ -119,17 +119,18 @@
         </div>
 
         <div class="form-actions">
-          <button type="submit" class="submit-btn">
-            <span>Solicitar Cotización</span>
-            <i class="arrow">→</i>
+          <button type="submit" class="submit-btn" [disabled]="loading">
+            <span *ngIf="!loading">Solicitar Cotización</span>
+            <span *ngIf="loading">Enviando...</span>
+            <i class="arrow" *ngIf="!loading">→</i>
           </button>
           <p class="form-note">
             * Campos obligatorios. Nos pondremos en contacto contigo en 24 horas.
           </p>
         </div>
 
-        <div class="success-message" *ngIf="submitted && form.valid">
-          ✓ ¡Cotización enviada! Te contactaremos pronto.
+        <div class="success-message" *ngIf="submitted && form.valid && !loading">
+          ✓ ¡Cliente registrado exitosamente! Te contactaremos pronto.
         </div>
       </form>
     </div>
