@@ -5,7 +5,7 @@ import { NgFor, NgIf } from '@angular/common';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, NgFor, NgIf],
+  imports: [RouterLink, NgFor],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -70,7 +70,7 @@ export class HomeComponent implements AfterViewInit {
 
   testimonials = [
     {
-      text: 'POLYLINE me permitió crear mi sitio web en una tarde, sin complicaciones.',
+      text: 'KowDevelopment me permitió crear mi sitio web en una tarde, sin complicaciones.',
       author: 'Sofia Martinez, Emprendedora'
     },
     {
