@@ -7,7 +7,7 @@ import { Pago } from '../models/pago.model';
   providedIn: 'root'
 })
 export class PagoService {
-  private baseUrl = 'http://localhost:8080/api/pagos'; // Ajusta la URL según tu backend
+  private baseUrl = 'https://backkowdevelopment.onrender.com/api/pagos'; // Ajusta la URL según tu backend
 
   constructor(private http: HttpClient) { }
 

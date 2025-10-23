@@ -60,15 +60,13 @@ export class ClientesComponent implements OnInit {
     this.loading = true;
     const formValue = this.clienteForm.value;
 
-    const cliente: Cliente = {
-      id: this.editingCliente?.id || '',
+    const clienteBase = {
       apellidos: formValue.apellidos,
       nombres: formValue.nombres,
       empresa: formValue.empresa,
       documentoIdentidad: formValue.documentoIdentidad,
       email: formValue.email,
       telefono: formValue.telefono,
-      createdAt: this.editingCliente?.createdAt || new Date(),
       direccion: {
         pais: formValue.pais,
         ciudad: formValue.ciudad,
@@ -77,21 +75,32 @@ export class ClientesComponent implements OnInit {
       }
     };
 
-    const operation = this.editingCliente
-      ? this.clienteService.update(cliente.id, cliente)
-      : this.clienteService.create(cliente);
-
-    operation.subscribe({
-      next: () => {
-        this.loadClientes();
-        this.resetForm();
-        this.loading = false;
-      },
-      error: (error) => {
-        console.error('Error al guardar cliente:', error);
-        this.loading = false;
-      }
-    });
+    if (this.editingCliente) {
+      const cliente: Cliente = { ...clienteBase, id: this.editingCliente.id, createdAt: this.editingCliente.createdAt };
+      this.clienteService.update(cliente.id!, cliente).subscribe({
+        next: () => {
+          this.loadClientes();
+          this.resetForm();
+          this.loading = false;
+        },
+        error: (error: any) => {
+          console.error('Error al guardar cliente:', error);
+          this.loading = false;
+        }
+      });
+    } else {
+      this.clienteService.create(clienteBase).subscribe({
+        next: (response: { id: string }) => {
+          this.loadClientes();
+          this.resetForm();
+          this.loading = false;
+        },
+        error: (error: any) => {
+          console.error('Error al guardar cliente:', error);
+          this.loading = false;
+        }
+      });
+    }
   }
 
   editCliente(cliente: Cliente) {

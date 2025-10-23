@@ -7,7 +7,7 @@ import { Usuario } from '../models/usuario.model';
   providedIn: 'root'
 })
 export class UsuarioService {
-  private baseUrl = 'http://localhost:8080/api/usuarios'; // Ajusta la URL según tu backend
+  private baseUrl = 'https://backkowdevelopment.onrender.com/api/usuarios'; // Ajusta la URL según tu backend
 
   constructor(private http: HttpClient) { }
 
