@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Boutique - Plantilla Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: #2c3e50;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+        
+        .nav-links a:hover {
+            color: #3498db;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&h=600&fit=crop');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+        
+        .btn {
+            background: #3498db;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0 10px;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid white;
+        }
+        
+        .btn-secondary:hover {
+            background: white;
+            color: #3498db;
+        }
+        
+        .section {
+            padding: 4rem 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+        }
+        
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .room-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .room-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .room-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .room-content {
+            padding: 1.5rem;
+        }
+        
+        .room-content h3 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .room-content p {
+            color: #7f8c8d;
+            margin-bottom: 1rem;
+        }
+        
+        .room-price {
+            color: #3498db;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .amenities {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .amenity {
+            background: #ecf0f1;
+            color: #2c3e50;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .rooms-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">Hotel Boutique</div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#habitaciones">Habitaciones</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#reservas">Reservas</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>Lujo y Comodidad</h1>
+            <p>Experimenta la hospitalidad de clase mundial en nuestro hotel boutique ubicado en el corazón de la ciudad</p>
+            <a href="#reservas" class="btn">Reservar Ahora</a>
+            <a href="#habitaciones" class="btn btn-secondary">Ver Habitaciones</a>
+        </div>
+    </section>
+
+    <section class="section" id="habitaciones">
+        <div class="container">
+            <h2>Nuestras Habitaciones</h2>
+            <div class="rooms-grid">
+                <div class="room-card">
+                    <div class="room-image" style="background-image: url('https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=400&h=250&fit=crop')"></div>
+                    <div class="room-content">
+                        <h3>Habitación Deluxe</h3>
+                        <p>Amplia habitación con vista panorámica y todas las comodidades modernas</p>
+                        <div class="room-price">$150/noche</div>
+                        <div class="amenities">
+                            <span class="amenity">WiFi</span>
+                            <span class="amenity">TV 55"</span>
+                            <span class="amenity">Minibar</span>
+                            <span class="amenity">Aire Acondicionado</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="room-card">
+                    <div class="room-image" style="background-image: url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=400&h=250&fit=crop')"></div>
+                    <div class="room-content">
+                        <h3>Suite Presidencial</h3>
+                        <p>Suite de lujo con sala de estar separada y baño con jacuzzi</p>
+                        <div class="room-price">$300/noche</div>
+                        <div class="amenities">
+                            <span class="amenity">WiFi Premium</span>
+                            <span class="amenity">TV 65"</span>
+                            <span class="amenity">Jacuzzi</span>
+                            <span class="amenity">Servicio 24h</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="room-card">
+                    <div class="room-image" style="background-image: url('https://images.unsplash.com/photo-1595576508898-0ad5c879a061?w=400&h=250&fit=crop')"></div>
+                    <div class="room-content">
+                        <h3>Habitación Ejecutiva</h3>
+                        <p>Perfecta para viajeros de negocios con escritorio y zona de trabajo</p>
+                        <div class="room-price">$120/noche</div>
+                        <div class="amenities">
+                            <span class="amenity">WiFi</span>
+                            <span class="amenity">Escritorio</span>
+                            <span class="amenity">Cafetera</span>
+                            <span class="amenity">Gimnasio</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Hotel Boutique. Todos los derechos reservados.</p>
+            <p>Tel: (555) 987-6543 | Email: reservas@hotelboutique.com</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,71 @@
+/* Variables de marca */
+:root{
+  --poly-primary: #2c3e50;
+  --poly-accent:  #f6b219;
+  --poly-warn:    #e74c3c;
+  --poly-text:    #1f2937;
+  --poly-muted:   #6b7280;
+  --poly-bg:      #f8f9fa;
+}
+
+/* Fuente recomendada (igual que tu sitio) */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Open+Sans:wght@400;600&display=swap');
+
+/* Reset completo */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', Roboto, system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+  color: var(--poly-text);
+  background: var(--poly-bg);
+  overflow-x: hidden;
+}
+
+body {
+  position: relative;
+}
+
+/* Utilidades rápidas */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.btn {
+  display:inline-block; padding:12px 22px; border-radius:999px; text-decoration:none;
+  font-weight:600; transition:transform .2s ease, box-shadow .2s ease;
+}
+.btn-primary {
+  background: var(--poly-accent); color:#000;
+  box-shadow:0 6px 18px rgba(246,178,25,.25);
+}
+.btn-primary:hover { transform: translateY(-2px); }
+
+/* Header simple */
+.app-toolbar {
+  position: sticky; top:0; z-index:50; backdrop-filter: blur(6px);
+  background: rgba(255,255,255,.8); border-bottom:1px solid #e5e7eb;
+}
+.brand { color: var(--poly-primary); font-weight:700; letter-spacing:.5px; }
+
+/* Hero */
+.hero {
+  padding: 72px 0 56px;
+  background: linear-gradient(180deg, rgba(44,62,80,.06), transparent);
+}
+.hero h1{ font-size: clamp(28px, 4.5vw, 44px); color: var(--poly-primary); margin: 0 0 8px;}
+.hero p { color: var(--poly-muted); font-size: clamp(16px, 2vw, 18px); }
+
+/* Cards */
+.card {
+  background:#fff; border:1px solid #e5e7eb; border-radius:16px; padding:20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,.04);
+}
+.card h3{ margin:.25rem 0 .5rem; color:var(--poly-primary); }
+
+/* Footer */
+.app-footer{ margin-top:56px; padding:32px 0; border-top:1px solid #e5e7eb; color:#374151; }

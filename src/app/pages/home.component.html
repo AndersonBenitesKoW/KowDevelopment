@@ -1,0 +1,555 @@
+<section class="hero">
+  <!-- Video de fondo optimizado con lazy loading -->
+  <div class="hero-bg-video">
+    <video
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      class="bg-video"
+      disablePictureInPicture
+      poster="assets/video-poster.jpg"
+      #videoElement>
+      <source src="assets/videos/videoprueba4.mp4" type="video/mp4">
+      <!-- Fallback para navegadores que no soporten video -->
+      Tu navegador no soporta videos HTML5.
+    </video>
+    <div class="video-overlay"></div>
+  </div>
+
+  <div class="hero-container">
+    <div class="hero-content">
+      <h1 class="hero-title">
+        Transforma tu Negocio con
+        <span class="gradient-text">Inteligencia Artificial</span>
+      </h1>
+      
+      <p class="hero-subtitle">
+        Creamos soluciones web completas potenciadas por IA: desde páginas web profesionales 
+        hasta chatbots inteligentes y sistemas CRM personalizados.
+      </p>
+
+      <div class="hero-cta">
+        <a routerLink="/cotizar" class="btn-primary">
+          <span>Solicitar Cotización</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M13 7l5 5m0 0l-5 5m5-5H6" stroke-width="2"/>
+          </svg>
+        </a>
+        <a routerLink="/plantillas" class="btn-secondary">
+          <span>Ver Demos</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="mockup-container">
+        <!-- Animated Dashboard Preview -->
+        <div class="dashboard-preview">
+          <div class="dashboard-header">
+            <div class="header-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="header-title">AIFactory Dashboard</div>
+          </div>
+          
+          <div class="dashboard-content">
+            <!-- AI Chat Interface -->
+            <div class="chat-panel">
+              <div class="chat-header">
+                <div class="avatar ai-avatar"></div>
+                <div class="chat-title">
+                  <strong>Asistente IA</strong>
+                  <span class="status">En línea</span>
+                </div>
+              </div>
+              <div class="chat-messages">
+                <div class="message received">
+                  <p>¿Cómo puedo ayudarte hoy?</p>
+                </div>
+                <div class="message sent">
+                  <p>Necesito un sitio web</p>
+                </div>
+                <div class="message received typing">
+                  <span></span><span></span><span></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Analytics Cards -->
+            <div class="analytics-grid">
+              <div class="analytics-card">
+                <div class="card-icon blue"></div>
+                <div class="card-content">
+                  <span class="card-label">Visitantes</span>
+                  <strong class="card-value">12.5K</strong>
+                  <span class="card-trend up">+23%</span>
+                </div>
+              </div>
+              <div class="analytics-card">
+                <div class="card-icon green"></div>
+                <div class="card-content">
+                  <span class="card-label">Conversiones</span>
+                  <strong class="card-value">856</strong>
+                  <span class="card-trend up">+18%</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bot Activity -->
+            <div class="bot-activity">
+              <div class="activity-header">
+                <span>Actividad del Chatbot</span>
+                <div class="pulse-indicator"></div>
+              </div>
+              <div class="activity-bars">
+                <div class="bar" style="width: 85%"></div>
+                <div class="bar" style="width: 92%"></div>
+                <div class="bar" style="width: 78%"></div>
+                <div class="bar" style="width: 95%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating Elements -->
+        <div class="floating-elements">
+          <div class="float-card card-1">
+            <div class="icon-circle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <span>Chat IA</span>
+          </div>
+          <div class="float-card card-2">
+            <div class="icon-circle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M3 3v18h18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M18 17V9M13 17v-6M8 17v-3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <span>Analytics</span>
+          </div>
+          <div class="float-card card-3">
+            <div class="icon-circle">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/>
+              </svg>
+            </div>
+            <span>Automático</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Templates Section - NUEVO DISEÑO -->
+<section class="templates-showcase">
+  <div class="templates-container">
+    <div class="templates-header">
+      <span class="templates-badge">Nuestras Plantillas</span>
+      <h2 class="templates-title">Diseños Profesionales Listos para Ti</h2>
+      <p class="templates-subtitle">Elige entre nuestras plantillas premium y personalízalas en minutos. Cada diseño está optimizado para convertir visitantes en clientes.</p>
+    </div>
+
+    <div class="templates-grid-modern">
+      <div class="template-card-modern" *ngFor="let template of templates.slice(0, 6); let i = index"
+           [style.animation-delay.ms]="i * 100"
+           (click)="openTemplatePreview(template)">
+        
+        <!-- Imagen de Preview -->
+        <div class="template-image-wrapper">
+          <div class="template-image" *ngIf="template.previewImage">
+            <img [src]="'templates/' + template.previewImage" 
+                 [alt]="template.name"
+                 loading="lazy">
+          </div>
+          
+          <!-- Fallback si no hay imagen -->
+          <div class="template-placeholder" *ngIf="!template.previewImage">
+            <div class="placeholder-header"></div>
+            <div class="placeholder-content">
+              <div class="placeholder-block"></div>
+              <div class="placeholder-row">
+                <div class="placeholder-col"></div>
+                <div class="placeholder-col"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Overlay con botón -->
+          <div class="template-overlay">
+            <button class="template-preview-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-width="2"/>
+                <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-width="2"/>
+              </svg>
+              <span>Vista Previa</span>
+            </button>
+          </div>
+
+          <!-- Badge de categoría -->
+          <div class="template-category-badge">{{ template.category }}</div>
+        </div>
+
+        <!-- Info de la plantilla -->
+        <div class="template-card-info">
+          <h3 class="template-name">{{ template.name }}</h3>
+          
+          <!-- Features -->
+          <div class="template-features">
+            <span class="feature-tag">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+              </svg>
+              Responsive
+            </span>
+            <span class="feature-tag">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+              Rápido
+            </span>
+            <span class="feature-tag">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+              Premium
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA para ver todas -->
+    <div class="templates-cta-wrapper">
+      <a routerLink="/plantillas" class="templates-view-all-btn">
+        <span>Ver Todas las Plantillas</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <p class="templates-count">+ de {{ templates.length }} plantillas profesionales disponibles</p>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works Section - Timeline Vertical Animado -->
+<section class="how-it-works">
+  <div class="container">
+    <div class="section-header">
+      <h2>¿Cómo Funciona?</h2>
+      <p>Tu sitio web profesional en 4 simples pasos</p>
+    </div>
+
+    <div class="timeline-container">
+      <!-- Línea vertical animada -->
+      <div class="timeline-line">
+        <div class="timeline-progress"></div>
+      </div>
+
+      <!-- Steps del timeline -->
+      <div class="timeline-steps">
+        <div class="timeline-item" 
+             *ngFor="let step of howItWorksSteps; let i = index"
+             [class.left]="i % 2 === 0"
+             [class.right]="i % 2 !== 0"
+             [attr.data-step]="i + 1">
+          
+          <!-- Punto del timeline -->
+          <div class="timeline-dot">
+            <div class="dot-inner">
+              <span class="step-number">{{ i + 1 }}</span>
+            </div>
+            <div class="dot-pulse"></div>
+          </div>
+
+          <!-- Contenido del paso -->
+          <div class="timeline-content">
+            <div class="content-card">
+              <div class="card-icon">
+                <span class="icon-emoji">{{ step.icon }}</span>
+                <div class="icon-glow"></div>
+              </div>
+              <div class="card-body">
+                <h3>{{ step.title }}</h3>
+                <p>{{ step.description }}</p>
+              </div>
+              <div class="card-arrow"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-container">
+      <a routerLink="/cotizar" class="btn-start">
+        Comenzar Ahora
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M13 7l5 5m0 0l-5 5m5-5H6" stroke-width="2"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="benefits">
+   <!-- Video de fondo lazy loaded -->
+   <div class="benefits-bg-video">
+     <video 
+       autoplay 
+       muted 
+       loop 
+       playsinline 
+       preload="none"
+       class="bg-video lazy-video" 
+       disablePictureInPicture>
+       <source data-src="assets/videos/3129576-uhd_3840_2160_30fps.mp4" type="video/mp4">
+       Tu navegador no soporta videos HTML5.
+     </video>
+     <div class="video-overlay"></div>
+   </div>
+
+   <div class="container">
+     <div class="section-header-services">
+       <span class="services-badge">Nuestros Servicios</span>
+       <h2>Soluciones Digitales Impulsadas por IA</h2>
+       <p>Ofrecemos un ecosistema completo de herramientas inteligentes para transformar tu negocio</p>
+     </div>
+
+     <div class="services-grid-modern">
+       <div class="service-card-premium" *ngFor="let benefit of benefits; let i = index"
+            [style.animation-delay.ms]="i * 150">
+         
+         <!-- Ícono destacado -->
+         <div class="service-icon-container">
+           <div class="icon-circle">
+             <span class="service-emoji">{{ benefit.icon }}</span>
+             <div class="icon-glow-ring"></div>
+           </div>
+         </div>
+
+         <!-- Contenido del servicio -->
+         <div class="service-content">
+           <h3 class="service-title">{{ benefit.title }}</h3>
+           <p class="service-description">{{ benefit.desc }}</p>
+           
+           <!-- Botón de acción -->
+           <button class="service-learn-more" (click)="scrollToContact()">
+             <span>Más Información</span>
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+               <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+             </svg>
+           </button>
+         </div>
+
+         <!-- Decoración de fondo -->
+         <div class="service-bg-decoration"></div>
+       </div>
+     </div>
+
+     <!-- CTA de contacto -->
+     <div class="services-cta">
+       <h3>¿Listo para impulsar tu negocio?</h3>
+       <p>Agenda una consultoría gratuita y descubre cómo nuestras soluciones pueden ayudarte</p>
+       <a routerLink="/cotizar" class="cta-button-services">
+         <span>Solicitar Consultoría Gratis</span>
+         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+           <path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+         </svg>
+       </a>
+     </div>
+   </div>
+ </section>
+
+<section class="testimonials">
+  <div class="container">
+    <div class="testimonials-header">
+      <span class="testimonials-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Testimonios
+      </span>
+      <h2>Lo que dicen nuestros clientes</h2>
+      <p>Empresas reales que han transformado su presencia digital con AIFactory</p>
+    </div>
+    
+    <div class="testimonials-grid-modern">
+      <div class="testimonial-card-premium" *ngFor="let testimonial of testimonials; let i = index"
+           [style.animation-delay.ms]="i * 200">
+        <!-- Quote icon decorativo -->
+        <div class="quote-decoration">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z"/>
+          </svg>
+        </div>
+        
+        <!-- Rating estrellas -->
+        <div class="rating-stars">
+          <svg *ngFor="let star of [1,2,3,4,5]" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+        </div>
+
+        <!-- Contenido del testimonio -->
+        <div class="testimonial-text">
+          <p>{{ testimonial.text }}</p>
+        </div>
+
+        <!-- Autor con avatar -->
+        <div class="testimonial-author-section">
+          <div class="author-avatar">
+            <span>{{ testimonial.author.charAt(0) }}</span>
+          </div>
+          <div class="author-info">
+            <strong class="author-name">{{ testimonial.author.split(',')[0] }}</strong>
+            <span class="author-role">{{ testimonial.author.split(',')[1] }}</span>
+          </div>
+        </div>
+
+        <!-- Decoración de fondo -->
+        <div class="testimonial-glow"></div>
+      </div>
+    </div>
+
+    <!-- CTA adicional -->
+    <div class="testimonials-cta">
+      <p>¿Quieres ser el próximo caso de éxito?</p>
+      <a routerLink="/cotizar" class="btn-testimonial-cta">
+        Comienza Ahora
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M13 7l5 5m0 0l-5 5m5-5H6" stroke-width="2"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Stats Section Premium -->
+<section class="stats-premium">
+  <div class="stats-bg-particles">
+    <div class="particle" *ngFor="let p of [1,2,3,4,5,6,7,8]"></div>
+  </div>
+  
+  <div class="stats-container">
+    <div class="stats-header">
+      <h2 class="stats-title">¿Por qué elegirnos?</h2>
+      <p class="stats-subtitle">Beneficios reales que marcan la diferencia en tu proyecto</p>
+    </div>
+
+    <div class="stats-grid-premium">
+      <div class="stat-card" *ngFor="let stat of stats; let i = index" 
+           [style.animation-delay.ms]="i * 150">
+        <!-- Ícono SVG según el tipo -->
+        <div class="stat-icon" [ngClass]="'icon-' + stat.type">
+          <!-- Plantillas - Grid Layout -->
+          <svg *ngIf="stat.type === 'templates'" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <rect x="3" y="3" width="7" height="7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="14" y="3" width="7" height="7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="3" y="14" width="7" height="7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="14" y="14" width="7" height="7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          
+          <!-- Personalización - Settings Sliders -->
+          <svg *ngIf="stat.type === 'custom'" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <line x1="4" y1="21" x2="4" y2="14" stroke-width="2" stroke-linecap="round"/>
+            <line x1="4" y1="10" x2="4" y2="3" stroke-width="2" stroke-linecap="round"/>
+            <line x1="12" y1="21" x2="12" y2="12" stroke-width="2" stroke-linecap="round"/>
+            <line x1="12" y1="8" x2="12" y2="3" stroke-width="2" stroke-linecap="round"/>
+            <line x1="20" y1="21" x2="20" y2="16" stroke-width="2" stroke-linecap="round"/>
+            <line x1="20" y1="12" x2="20" y2="3" stroke-width="2" stroke-linecap="round"/>
+            <line x1="1" y1="14" x2="7" y2="14" stroke-width="2" stroke-linecap="round"/>
+            <line x1="9" y1="8" x2="15" y2="8" stroke-width="2" stroke-linecap="round"/>
+            <line x1="17" y1="16" x2="23" y2="16" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          
+          <!-- Entrega Rápida - Zap Lightning -->
+          <svg *ngIf="stat.type === 'delivery'" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/>
+          </svg>
+          
+          <div class="icon-glow"></div>
+        </div>
+
+        <!-- Número animado -->
+        <div class="stat-number-wrapper">
+          <span class="stat-number" [attr.data-target]="stat.number">
+            {{ stat.displayNumber || '0' }}
+          </span>
+          <span class="stat-suffix" *ngIf="stat.suffix">{{ stat.suffix }}</span>
+        </div>
+
+        <!-- Label -->
+        <div class="stat-label">{{ stat.label }}</div>
+
+        <!-- Efecto de brillo -->
+        <div class="stat-shine"></div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Wave Divider -->
+  <div class="wave-divider">
+    <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path d="M0,0 C150,80 350,0 600,50 C850,100 1050,20 1200,80 L1200,120 L0,120 Z" fill="#0f172a"/>
+    </svg>
+    <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="wave-layer-2">
+      <path d="M0,20 C200,100 400,20 600,70 C800,120 1000,40 1200,100 L1200,120 L0,120 Z" fill="rgba(15, 23, 42, 0.5)"/>
+    </svg>
+  </div>
+</section>
+
+<!-- Template Preview Modal -->
+<div class="template-modal" [class.active]="isModalOpen" (click)="closeModal($event)">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>{{ selectedTemplate?.name }}</h3>
+      <button class="close-btn" (click)="closeModal()">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+        </svg>
+      </button>
+    </div>
+    
+    <div class="modal-body">
+      <div class="view-controls">
+        <button class="view-btn" [class.active]="currentView === 'desktop'" (click)="setView('desktop')">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M21 2H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h7l-2 3v1h8v-1l-2-3h7c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 12H3V4h18v10z"/>
+          </svg>
+          Escritorio
+        </button>
+        <button class="view-btn" [class.active]="currentView === 'mobile'" (click)="setView('mobile')">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17 1.01L7 1c-1.1 0-1.99.9-1.99 2v18c0 1.1.89 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/>
+          </svg>
+          Móvil
+        </button>
+      </div>
+      
+      <div class="preview-container" [class.mobile-view]="currentView === 'mobile'">
+        <ng-template #previewHost></ng-template>
+      </div>
+      
+      <div class="modal-footer">
+        <div class="template-info-modal">
+          <h4>{{ selectedTemplate?.name }}</h4>
+          <p>{{ selectedTemplate?.desc }}</p>
+          <div class="template-features-modal">
+            <span class="feature-tag" *ngFor="let feature of selectedTemplate?.features">{{ feature }}</span>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button class="btn-modal secondary" (click)="closeModal()">Cerrar</button>
+          <button class="btn-modal tertiary" (click)="viewFullDemo()">Ver demo completa</button>
+          <a routerLink="/cotizar" class="btn-modal primary" (click)="closeModal()">Usar esta plantilla</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

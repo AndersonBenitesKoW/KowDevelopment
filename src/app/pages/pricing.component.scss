@@ -1,0 +1,487 @@
+:host {
+  --primary-color: #0ea5e9;
+  --secondary-color: #06b6d4;
+  --accent-color: #10b981;
+  --dark-blue: #1e40af;
+  --light-cyan: #67e8f9;
+  --mint-green: #34d399;
+  --electric-blue: #3b82f6;
+  --turquoise: #14b8a6;
+  --background-light: #f0f9ff;
+  --text-dark: #0f172a;
+  --border-color: #bae6fd;
+  --success-color: #10b981;
+  --error-color: #ef4444;
+  --gradient-hero: linear-gradient(135deg, #e0f2fe 0%, #b3e5fc 50%, #81d4fa 100%);
+  --gradient-templates: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  --gradient-benefits: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+  --gradient-process: linear-gradient(135deg, #e0f2fe 0%, #b3e5fc 100%);
+  --gradient-testimonials: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%);
+  --gradient-stats: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 50%, #10b981 100%);
+  --gradient-cta: linear-gradient(135deg, #06b6d4 0%, #0ea5e9 50%, #10b981 100%);
+  --glow-primary: 0 0 20px rgba(14, 165, 233, 0.4);
+  --glow-secondary: 0 0 20px rgba(6, 182, 212, 0.4);
+  --glow-accent: 0 0 20px rgba(16, 185, 129, 0.4);
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+// Pricing Hero Section
+.pricing-hero {
+  background: var(--gradient-hero);
+  padding: 100px 0;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+      radial-gradient(circle at 20% 80%, rgba(55, 65, 81, 0.2) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(75, 85, 99, 0.2) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(107, 114, 128, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 60% 20%, rgba(156, 163, 175, 0.1) 0%, transparent 40%);
+    pointer-events: none;
+    animation: float 6s ease-in-out infinite;
+    z-index: 1;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+      url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="pricing-tech-pattern" width="25" height="25" patternUnits="userSpaceOnUse"><circle cx="12.5" cy="12.5" r="1.5" fill="rgba(55,65,81,0.15)"/><circle cx="12.5" cy="12.5" r="0.5" fill="rgba(75,85,99,0.2)"/><path d="M12.5 12.5 L17.5 12.5 L17.5 17.5 L12.5 17.5 Z" stroke="rgba(107,114,128,0.1)" stroke-width="0.5" fill="none"/></pattern></defs><rect width="100" height="100" fill="url(%23pricing-tech-pattern)"/></svg>');
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      right: -20px;
+      bottom: -20px;
+      background: linear-gradient(135deg, rgba(55, 65, 81, 0.25), rgba(75, 85, 99, 0.2), rgba(107, 114, 128, 0.15));
+      border-radius: 20px;
+      z-index: -1;
+      animation: pulse-glow 3s ease-in-out infinite;
+      box-shadow: 0 0 40px rgba(99, 102, 241, 0.3);
+      backdrop-filter: blur(10px);
+    }
+
+    h1 {
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 16px;
+      line-height: 1.2;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+      color: white;
+      line-height: 1.6;
+    }
+  }
+}
+
+// Pricing Plans Section
+.pricing-plans {
+  background: var(--gradient-benefits);
+  padding: 100px 0;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+
+  .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .plan-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 249, 255, 0.95));
+    border: 1px solid rgba(14, 165, 233, 0.1);
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 30px rgba(14, 165, 233, 0.1);
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.05) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    &:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 20px 60px rgba(14, 165, 233, 0.2);
+      border-color: rgba(14, 165, 233, 0.3);
+
+      &::before {
+        opacity: 1;
+      }
+
+      &::after {
+        opacity: 1;
+      }
+    }
+
+    &.featured {
+      border-color: rgba(14, 165, 233, 0.3);
+      transform: scale(1.05);
+      box-shadow: 0 15px 35px rgba(14, 165, 233, 0.2);
+
+      &:hover {
+        transform: scale(1.05) translateY(-12px);
+      }
+    }
+    
+    .plan-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 6px 20px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+    }
+    
+    .plan-header {
+      margin-bottom: 30px;
+      
+      h3 {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 8px;
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        letter-spacing: -0.01em;
+      }
+      
+      .plan-price {
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        margin-bottom: 12px;
+        
+        .currency {
+          font-size: 20px;
+          font-weight: 600;
+          color: var(--secondary-color);
+        }
+        
+        .amount {
+          font-size: 48px;
+          font-weight: 800;
+          background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          margin: 0 4px;
+        }
+        
+        .period {
+          font-size: 16px;
+          color: var(--secondary-color);
+        }
+      }
+      
+      .plan-description {
+        color: var(--secondary-color);
+        font-size: 16px;
+        line-height: 1.5;
+      }
+    }
+    
+    .plan-features {
+      margin-bottom: 30px;
+      
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        
+        li {
+          display: flex;
+          align-items: center;
+          padding: 8px 0;
+          font-size: 14px;
+          color: var(--text-dark);
+          
+          .check-icon {
+            background: var(--success-color);
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 12px;
+            flex-shrink: 0;
+          }
+        }
+      }
+    }
+    
+    .plan-action {
+      .plan-btn {
+        width: 100%;
+        padding: 16px 24px;
+        border: 2px solid var(--primary-color);
+        background: transparent;
+        color: var(--primary-color);
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        margin-bottom: 12px;
+        position: relative;
+        overflow: hidden;
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        letter-spacing: -0.01em;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.1), transparent);
+          transition: left 0.5s;
+        }
+
+        &:hover {
+          background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+          color: white;
+          transform: translateY(-3px) scale(1.02);
+          box-shadow: 0 12px 30px rgba(14, 165, 233, 0.4);
+
+          &::before {
+            left: 100%;
+          }
+        }
+
+        &.btn-featured {
+          background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+          color: white;
+          box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+
+          &:hover {
+            background: linear-gradient(135deg, #0284c7, #0ea5e9, #06b6d4);
+            box-shadow: 0 12px 30px rgba(14, 165, 233, 0.5);
+          }
+        }
+      }
+      
+      .trial-text {
+        font-size: 12px;
+        color: var(--success-color);
+        font-weight: 600;
+        margin: 0;
+      }
+    }
+  }
+}
+
+// FAQ Section
+.pricing-faq {
+  background: var(--gradient-testimonials);
+  padding: 100px 0;
+  width: 100%;
+
+  .faq-header {
+    text-align: center;
+    margin-bottom: 60px;
+
+    h2 {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 16px;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      font-size: 18px;
+      color: var(--secondary-color);
+    }
+  }
+  
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .faq-item {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(250, 245, 255, 0.9));
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(99, 102, 241, 0.15);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(14, 165, 233, 0.1);
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    &:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 20px 60px rgba(99, 102, 241, 0.2);
+      border-color: rgba(99, 102, 241, 0.3);
+
+      &::before {
+        opacity: 1;
+      }
+    }
+
+    h4 {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      letter-spacing: -0.01em;
+    }
+
+    p {
+      color: var(--secondary-color);
+      line-height: 1.6;
+      margin: 0;
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .pricing-hero {
+    padding: 60px 0 40px;
+  }
+  
+  .pricing-plans {
+    padding: 60px 0;
+    
+    .plans-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    
+    .plan-card {
+      padding: 30px 20px;
+      
+      &.featured {
+        transform: none;
+        
+        &:hover {
+          transform: translateY(-8px);
+        }
+      }
+      
+      .plan-header {
+        .plan-price {
+          .amount {
+            font-size: 40px;
+          }
+        }
+      }
+    }
+  }
+  
+  .pricing-faq {
+    padding: 60px 0;
+    
+    .faq-header {
+      margin-bottom: 40px;
+    }
+    
+    .faq-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    
+    .faq-item {
+      padding: 20px;
+    }
+  }
+}

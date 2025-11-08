@@ -1,0 +1,116 @@
+<section class="templates-hero">
+  <div class="container">
+    <div class="hero-content">
+      <h1>Galería de Plantillas</h1>
+      <p class="hero-subtitle">Descubre diseños profesionales creados para impulsar tu negocio online</p>
+    </div>
+  </div>
+</section>
+
+<section class="templates-search">
+  <div class="container">
+    <div class="search-wrapper">
+      <div class="search-input">
+        <input 
+          [(ngModel)]="q" 
+          name="q" 
+          placeholder="Buscar por industria: restaurante, hotel, consultora..." 
+          class="search-field"
+        />
+        <button class="search-btn" type="button">
+          <span>🔍</span>
+        </button>
+      </div>
+      <div class="search-filters">
+        <button 
+          class="filter-btn" 
+          [class.active]="selectedCategory === 'Todas'"
+          (click)="selectCategory('Todas')">
+          Todas
+        </button>
+        <button 
+          class="filter-btn" 
+          [class.active]="selectedCategory === 'Tienda Online'"
+          (click)="selectCategory('Tienda Online')">
+          E-commerce
+        </button>
+        <button 
+          class="filter-btn" 
+          [class.active]="selectedCategory === 'Marketing'"
+          (click)="selectCategory('Marketing')">
+          Marketing
+        </button>
+        <button 
+          class="filter-btn" 
+          [class.active]="selectedCategory === 'Personal'"
+          (click)="selectCategory('Personal')">
+          Portfolio
+        </button>
+        <button 
+          class="filter-btn" 
+          [class.active]="selectedCategory === 'Corporativo'"
+          (click)="selectCategory('Corporativo')">
+          Corporativo
+        </button>
+        <button 
+          class="filter-btn" 
+          [class.active]="selectedCategory === 'Gastronomía'"
+          (click)="selectCategory('Gastronomía')">
+          Gastronomía
+        </button>
+        <button 
+          class="filter-btn" 
+          [class.active]="selectedCategory === 'Servicios'"
+          (click)="selectCategory('Servicios')">
+          Servicios
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="templates-gallery">
+  <div class="container">
+    <div class="templates-grid">
+      <article class="template-card" *ngFor="let t of filtered; trackBy: trackById">
+        <div class="template-preview">
+          <img [src]="'templates/' + t.previewImage" [alt]="t.name" class="template-image" />
+          <div class="template-overlay">
+            <button class="preview-btn" (click)="openPreview(t)">Vista previa</button>
+            <button class="use-btn" (click)="useTemplate(t)">Usar plantilla</button>
+          </div>
+        </div>
+        <div class="template-info">
+          <h3>{{ t.name }}</h3>
+          <p>{{ t.desc }}</p>
+          <div class="template-tags">
+            <span class="tag">{{ t.category }}</span>
+            <span class="tag">Responsive</span>
+            <span class="tag">SEO Ready</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Modal de Vista Previa -->
+<div class="preview-modal" *ngIf="showPreview" (click)="closePreview()">
+  <div class="preview-content" (click)="$event.stopPropagation()">
+    <div class="preview-header">
+      <h3>{{ selectedTemplate?.name }}</h3>
+      <button class="close-btn" (click)="closePreview()">×</button>
+    </div>
+    <div class="preview-body">
+      <!-- Contenedor para el componente dinámico -->
+      <div class="preview-wrapper">
+        <ng-container #previewHost></ng-container>
+      </div>
+    </div>
+    <div class="preview-footer">
+      <button class="use-template-btn" (click)="useTemplate(selectedTemplate!)">
+        Usar esta plantilla
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,161 @@
+<section class="quote-hero">
+  <div class="container">
+    <div class="hero-content">
+      <h1>Cotiza tu Proyecto Web</h1>
+      <p class="hero-subtitle">
+        Obtén una cotización personalizada para tu sitio web profesional.
+        Nuestro equipo te ayudará a encontrar la solución perfecta para tu negocio.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="quote-form-section">
+  <div class="container">
+    <div class="form-container">
+      <div class="form-header">
+        <h2>Información del Proyecto</h2>
+        <p>Completa los siguientes datos para recibir una cotización detallada</p>
+      </div>
+
+      <form [formGroup]="form" (ngSubmit)="send()" novalidate class="quote-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nombre">Nombre completo *</label>
+            <input 
+              type="text" 
+              id="nombre"
+              formControlName="nombre" 
+              placeholder="Tu nombre completo"
+              [class.error]="submitted && form.get('nombre')?.invalid">
+            <div class="error-message" *ngIf="submitted && form.get('nombre')?.invalid">
+              El nombre es obligatorio
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Correo electrónico *</label>
+            <input 
+              type="email" 
+              id="email"
+              formControlName="email" 
+              placeholder="tu@email.com"
+              [class.error]="submitted && form.get('email')?.invalid">
+            <div class="error-message" *ngIf="submitted && form.get('email')?.invalid">
+              El email es obligatorio
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="empresa">Empresa</label>
+            <input 
+              type="text" 
+              id="empresa"
+              formControlName="empresa" 
+              placeholder="Nombre de tu empresa">
+          </div>
+
+          <div class="form-group">
+            <label for="telefono">Teléfono</label>
+            <input 
+              type="tel" 
+              id="telefono"
+              formControlName="telefono" 
+              placeholder="+1 234 567 8900">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="tipo">Tipo de plan de interés *</label>
+          <select 
+            id="tipo"
+            formControlName="tipo" 
+            [class.error]="submitted && form.get('tipo')?.invalid">
+            <option value="">Selecciona un plan</option>
+            <option value="Start">Plan Start - $29/mes</option>
+            <option value="Business">Plan Business - $79/mes</option>
+            <option value="Pro">Plan Pro - $199/mes</option>
+          </select>
+          <div class="error-message" *ngIf="submitted && form.get('tipo')?.invalid">
+            Selecciona un tipo de plan
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="detalles">Detalles del proyecto *</label>
+          <textarea 
+            id="detalles"
+            rows="6" 
+            formControlName="detalles" 
+            placeholder="Describe tu proyecto: qué tipo de sitio web necesitas, funcionalidades específicas, diseño preferido, etc."
+            [class.error]="submitted && form.get('detalles')?.invalid"></textarea>
+          <div class="error-message" *ngIf="submitted && form.get('detalles')?.invalid">
+            Los detalles del proyecto son obligatorios
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="presupuesto">Presupuesto estimado</label>
+          <select id="presupuesto" formControlName="presupuesto">
+            <option value="">Selecciona un rango</option>
+            <option value="500-1000">$500 - $1,000</option>
+            <option value="1000-2500">$1,000 - $2,500</option>
+            <option value="2500-5000">$2,500 - $5,000</option>
+            <option value="5000+">$5,000+</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="timeline">Tiempo estimado de entrega</label>
+          <select id="timeline" formControlName="timeline">
+            <option value="">Selecciona un tiempo</option>
+            <option value="1-2-weeks">1-2 semanas</option>
+            <option value="3-4-weeks">3-4 semanas</option>
+            <option value="1-2-months">1-2 meses</option>
+            <option value="3-months">3+ meses</option>
+          </select>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="submit-btn">
+            <span>Solicitar Cotización</span>
+            <i class="arrow">→</i>
+          </button>
+          <p class="form-note">
+            * Campos obligatorios. Nos pondremos en contacto contigo en 24 horas.
+          </p>
+        </div>
+
+        <div class="success-message" *ngIf="submitted && form.valid">
+          ✓ ¡Cotización enviada! Te contactaremos pronto.
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="quote-info">
+  <div class="container">
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-icon">⚡</div>
+        <h3>Respuesta rápida</h3>
+        <p>Te contactamos en menos de 24 horas con una cotización personalizada</p>
+      </div>
+      
+      <div class="info-card">
+        <div class="info-icon">💰</div>
+        <h3>Sin compromiso</h3>
+        <p>La cotización es completamente gratuita y sin compromiso de compra</p>
+      </div>
+      
+      <div class="info-card">
+        <div class="info-icon">🎯</div>
+        <h3>Solución personalizada</h3>
+        <p>Cada propuesta se adapta específicamente a tus necesidades y objetivos</p>
+      </div>
+    </div>
+  </div>
+</section>
