@@ -7,7 +7,8 @@ import { Venta } from '../models/venta.model';
   providedIn: 'root'
 })
 export class VentaService {
-  private baseUrl = 'http://localhost:8080/api/ventas'; // Ajusta la URL según tu backend
+  private baseUrl = 'https://backkowdevelopment.onrender.com/api/ventas'; 
+// Ajusta la URL según tu backend
 
   constructor(private http: HttpClient) { }
 

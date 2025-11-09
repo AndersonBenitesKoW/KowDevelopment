@@ -7,7 +7,7 @@ import { Usuario } from '../models/usuario.model';
   providedIn: 'root'
 })
 export class UsuarioService {
-  private apiUrl = 'http://localhost:8080/api/usuarios'; // URL de tu backend Spring Boot
+  private apiUrl = 'https://backkowdevelopment.onrender.com/api/usuarios'; // URL de tu backend Spring Boot
 
   constructor(private http: HttpClient) {}
 

@@ -7,7 +7,7 @@ import { Pedido } from '../models/pedido.model';
   providedIn: 'root'
 })
 export class PedidoService {
-  private baseUrl = 'http://localhost:8080/api/pedidos'; // Ajusta la URL según tu backend
+  private baseUrl = 'https://backkowdevelopment.onrender.com/api/pedidos'; // Ajusta la URL según tu backend
 
   constructor(private http: HttpClient) { }
 

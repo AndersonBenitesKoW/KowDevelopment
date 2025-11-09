@@ -7,7 +7,7 @@ import { Categoria } from '../models/categoria.model';
   providedIn: 'root'
 })
 export class CategoriaService {
-  private baseUrl = 'http://localhost:8080/api/categorias'; // Ajusta la URL según tu backend
+  private baseUrl = 'https://backkowdevelopment.onrender.com/api/categorias'; // Ajusta la URL según tu backend
 
   constructor(private http: HttpClient) { }
 

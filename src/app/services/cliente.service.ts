@@ -5,7 +5,7 @@ import { Cliente } from '../models/cliente.model';
 
 @Injectable({ providedIn: 'root' })
 export class ClienteService {
-  private baseUrl = 'http://localhost:8080/api/clientes';
+  private baseUrl = 'https://backkowdevelopment.onrender.com/api/clientes';
 
   constructor(private http: HttpClient) {}
 
