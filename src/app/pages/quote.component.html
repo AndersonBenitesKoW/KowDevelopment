@@ -14,35 +14,35 @@
   <div class="container">
     <div class="form-container">
       <div class="form-header">
-        <h2>Información del Proyecto</h2>
-        <p>Completa los siguientes datos para recibir una cotización detallada</p>
+        <h2>Registro de Pedido</h2>
+        <p>Completa los siguientes datos para registrarte como cliente</p>
       </div>
 
       <form [formGroup]="form" (ngSubmit)="send()" novalidate class="quote-form">
         <div class="form-row">
           <div class="form-group">
-            <label for="nombre">Nombre completo *</label>
-            <input 
-              type="text" 
-              id="nombre"
-              formControlName="nombre" 
-              placeholder="Tu nombre completo"
-              [class.error]="submitted && form.get('nombre')?.invalid">
-            <div class="error-message" *ngIf="submitted && form.get('nombre')?.invalid">
-              El nombre es obligatorio
+            <label for="nombres">Nombres *</label>
+            <input
+              type="text"
+              id="nombres"
+              formControlName="nombres"
+              placeholder="Tus nombres"
+              [class.error]="submitted && form.get('nombres')?.invalid">
+            <div class="error-message" *ngIf="submitted && form.get('nombres')?.invalid">
+              Los nombres son obligatorios
             </div>
           </div>
 
           <div class="form-group">
-            <label for="email">Correo electrónico *</label>
-            <input 
-              type="email" 
-              id="email"
-              formControlName="email" 
-              placeholder="tu@email.com"
-              [class.error]="submitted && form.get('email')?.invalid">
-            <div class="error-message" *ngIf="submitted && form.get('email')?.invalid">
-              El email es obligatorio
+            <label for="apellidos">Apellidos *</label>
+            <input
+              type="text"
+              id="apellidos"
+              formControlName="apellidos"
+              placeholder="Tus apellidos"
+              [class.error]="submitted && form.get('apellidos')?.invalid">
+            <div class="error-message" *ngIf="submitted && form.get('apellidos')?.invalid">
+              Los apellidos son obligatorios
             </div>
           </div>
         </div>
@@ -50,91 +50,126 @@
         <div class="form-row">
           <div class="form-group">
             <label for="empresa">Empresa</label>
-            <input 
-              type="text" 
+            <input
+              type="text"
               id="empresa"
-              formControlName="empresa" 
+              formControlName="empresa"
               placeholder="Nombre de tu empresa">
           </div>
 
           <div class="form-group">
+            <label for="documentoIdentidad">Documento de Identidad *</label>
+            <input
+              type="text"
+              id="documentoIdentidad"
+              formControlName="documentoIdentidad"
+              placeholder="Tu documento de identidad"
+              [class.error]="submitted && form.get('documentoIdentidad')?.invalid">
+            <div class="error-message" *ngIf="submitted && form.get('documentoIdentidad')?.invalid">
+              El documento de identidad es obligatorio
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Correo electrónico *</label>
+            <input
+              type="email"
+              id="email"
+              formControlName="email"
+              placeholder="tu@email.com"
+              [class.error]="submitted && form.get('email')?.invalid">
+            <div class="error-message" *ngIf="submitted && form.get('email')?.invalid">
+              El email es obligatorio
+            </div>
+          </div>
+
+          <div class="form-group">
             <label for="telefono">Teléfono</label>
-            <input 
-              type="tel" 
+            <input
+              type="tel"
               id="telefono"
-              formControlName="telefono" 
-              placeholder="+1 234 567 8900">
+              formControlName="telefono"
+              placeholder="+51 987 654 321">
           </div>
         </div>
 
-        <div class="form-group">
-          <label for="tipo">Tipo de plan de interés *</label>
-          <select 
-            id="tipo"
-            formControlName="tipo" 
-            [class.error]="submitted && form.get('tipo')?.invalid">
-            <option value="">Selecciona un plan</option>
-            <option value="Start">Plan Start - $29/mes</option>
-            <option value="Business">Plan Business - $79/mes</option>
-            <option value="Pro">Plan Pro - $199/mes</option>
-          </select>
-          <div class="error-message" *ngIf="submitted && form.get('tipo')?.invalid">
-            Selecciona un tipo de plan
+        <div class="form-row">
+          <div class="form-group">
+            <label for="pais">País *</label>
+            <input
+              type="text"
+              id="pais"
+              formControlName="pais"
+              placeholder="Tu país"
+              [class.error]="submitted && form.get('pais')?.invalid">
+            <div class="error-message" *ngIf="submitted && form.get('pais')?.invalid">
+              El país es obligatorio
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="ciudad">Ciudad *</label>
+            <input
+              type="text"
+              id="ciudad"
+              formControlName="ciudad"
+              placeholder="Tu ciudad"
+              [class.error]="submitted && form.get('ciudad')?.invalid">
+            <div class="error-message" *ngIf="submitted && form.get('ciudad')?.invalid">
+              La ciudad es obligatoria
+            </div>
           </div>
         </div>
 
-        <div class="form-group">
-          <label for="detalles">Detalles del proyecto *</label>
-          <textarea 
-            id="detalles"
-            rows="6" 
-            formControlName="detalles" 
-            placeholder="Describe tu proyecto: qué tipo de sitio web necesitas, funcionalidades específicas, diseño preferido, etc."
-            [class.error]="submitted && form.get('detalles')?.invalid"></textarea>
-          <div class="error-message" *ngIf="submitted && form.get('detalles')?.invalid">
-            Los detalles del proyecto son obligatorios
+        <div class="form-row">
+          <div class="form-group">
+            <label for="distrito">Distrito *</label>
+            <input
+              type="text"
+              id="distrito"
+              formControlName="distrito"
+              placeholder="Tu distrito"
+              [class.error]="submitted && form.get('distrito')?.invalid">
+            <div class="error-message" *ngIf="submitted && form.get('distrito')?.invalid">
+              El distrito es obligatorio
+            </div>
           </div>
-        </div>
 
-        <div class="form-group">
-          <label for="presupuesto">Presupuesto estimado</label>
-          <select id="presupuesto" formControlName="presupuesto">
-            <option value="">Selecciona un rango</option>
-            <option value="500-1000">$500 - $1,000</option>
-            <option value="1000-2500">$1,000 - $2,500</option>
-            <option value="2500-5000">$2,500 - $5,000</option>
-            <option value="5000+">$5,000+</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="timeline">Tiempo estimado de entrega</label>
-          <select id="timeline" formControlName="timeline">
-            <option value="">Selecciona un tiempo</option>
-            <option value="1-2-weeks">1-2 semanas</option>
-            <option value="3-4-weeks">3-4 semanas</option>
-            <option value="1-2-months">1-2 meses</option>
-            <option value="3-months">3+ meses</option>
-          </select>
+          <div class="form-group">
+            <label for="linea">Dirección *</label>
+            <input
+              type="text"
+              id="linea"
+              formControlName="linea"
+              placeholder="Tu dirección completa"
+              [class.error]="submitted && form.get('linea')?.invalid">
+            <div class="error-message" *ngIf="submitted && form.get('linea')?.invalid">
+              La dirección es obligatoria
+            </div>
+          </div>
         </div>
 
         <div class="form-actions">
           <button type="submit" class="submit-btn">
-            <span>Solicitar Cotización</span>
+            <span>Registrar Cliente</span>
             <i class="arrow">→</i>
           </button>
           <p class="form-note">
-            * Campos obligatorios. Nos pondremos en contacto contigo en 24 horas.
+            * Campos obligatorios.
           </p>
         </div>
 
         <div class="success-message" *ngIf="submitted && form.valid">
-          ✓ ¡Cotización enviada! Te contactaremos pronto.
-        </div>
-      </form>
-    </div>
-  </div>
-</section>
+           ✓ ¡Cliente registrado exitosamente!
+         </div>
+       </form>
+
+       
+     </div>
+   </div>
+ </section>
 
 <section class="quote-info">
   <div class="container">

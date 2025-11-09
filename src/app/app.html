@@ -6,8 +6,8 @@
 <header class="topbar">
   <div class="wrap">
     <a class="brand" routerLink="/">
-      <img src="assets/imagenes/logo.png" alt="AIFactory Logo" class="logo">
-      <strong>AIFactory</strong>
+      <img src="assets/imagenes/logo.png" alt="KowDevelopment Logo" class="logo">
+      <strong>KowDevelopment</strong>
     </a>
 
     <!-- Botón hamburguesa -->
@@ -37,8 +37,27 @@
       </div>
 
       <div class="auth-links">
-        <a routerLink="login" routerLinkActive="active" class="login-link">Iniciar Sesión</a>
-        <a routerLink="register" routerLinkActive="active" class="btn register-btn">Registrarse</a>
+       <!--  <ng-container *ngIf="!isLoggedIn()">
+          <a routerLink="login" routerLinkActive="active" class="login-link">Iniciar Sesión</a>
+          <a routerLink="register" routerLinkActive="active" class="btn register-btn">Registrarse</a>
+        </ng-container> -->
+        <ng-container *ngIf="!isLoggedIn()">
+          <a routerLink="login" routerLinkActive="active" class="login-link">Iniciar Sesión</a>
+          <a routerLink="register" routerLinkActive="active" class="btn register-btn">Registrarse</a>
+        </ng-container>
+        <ng-container *ngIf="isLoggedIn()">
+          <button class="btn logout-btn" (click)="logout()">Cerrar Sesión</button>
+        </ng-container>
+        <!-- Enlaces de administración solo para administradores -->
+        <div class="admin-links" *ngIf="isAdmin()">
+          <div class="dropdown">
+            <button class="dropdown-btn" (click)="toggleCruds($event)">Cruds ▼</button>
+            <div class="dropdown-content" [class.show]="crudsOpen">
+              <a routerLink="admin/categorias" routerLinkActive="active">Categorías</a>
+              <a routerLink="admin/usuarios" routerLinkActive="active">Usuarios</a>
+            </div>
+          </div>
+        </div>
       </div>
     </nav>
   </div>
@@ -61,7 +80,7 @@
     </div>
     <div class="popup-body">
       <p class="response-time">ChatBots, Páginas Web Inteligentes, Asistentes Virtuales, Automatizaciones. Contáctanos:</p>
-      <a href="https://wa.me/51943812536?text=Hola%20Arq.%20Luis%20Salas,%20me%20interesa%20crear%20un%20sitio%20web%20con%20AIFactory.%20¿Podría%20brindarme%20más%20información?" 
+      <a href="https://wa.me/51943812536?text=Hola%20Arq.%20Luis%20Salas,%20me%20interesa%20crear%20un%20sitio%20web%20con%20KowDevelopment.%20¿Podría%20brindarme%20más%20información?"
          class="contact-card" 
          target="_blank"
          rel="noopener noreferrer">
@@ -98,8 +117,8 @@
     <div class="footer-top">
       <div class="footer-section brand-section">
         <div class="footer-brand">
-          <img src="assets/imagenes/logo.png" alt="AIFactory Logo" class="footer-logo">
-          <strong>AIFactory</strong>
+          <img src="assets/imagenes/logo.png" alt="KowDevelopment Logo" class="footer-logo">
+          <strong>KowDevelopment</strong>
         </div>
         <p class="footer-description">
           Transformamos ideas en sitios web profesionales potenciados por IA. 
@@ -172,7 +191,7 @@
     <!-- Footer Bottom -->
     <div class="footer-bottom">
       <div class="footer-copyright">
-        <p>© {{ year() }} AIFactory. Todos los derechos reservados.</p>
+        <p>© {{ year() }} KowDevelopment. Todos los derechos reservados.</p>
       </div>
       <div class="footer-legal">
         <a href="#">Términos de Servicio</a>

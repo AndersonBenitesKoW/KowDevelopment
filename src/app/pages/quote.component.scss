@@ -557,6 +557,7 @@
   }
 }
 
+
 // Responsive Design
 @media (max-width: 768px) {
   .quote-hero {
@@ -578,6 +579,29 @@
     .info-grid {
       grid-template-columns: 1fr;
       gap: 20px;
+    }
+  }
+
+  .services-section {
+    padding: 60px 0;
+
+    .services-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+
+  .cart-section {
+    padding: 60px 0;
+
+    .cart-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+
+      .remove-btn {
+        align-self: flex-end;
+      }
     }
   }
 }

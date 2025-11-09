@@ -1,0 +1,85 @@
+<div class="admin-users">
+  <h1>Administrar Usuarios</h1>
+
+  <button class="btn btn-primary" (click)="toggleForm()">
+    {{ showForm ? 'Cancelar' : 'Nuevo Usuario' }}
+  </button>
+
+  <div class="form-container" *ngIf="showForm">
+    <form [formGroup]="usuarioForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nombres">Nombres:</label>
+          <input type="text" id="nombres" formControlName="nombres">
+        </div>
+
+        <div class="form-group">
+          <label for="apellidos">Apellidos:</label>
+          <input type="text" id="apellidos" formControlName="apellidos">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" formControlName="email">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="rol">Rol:</label>
+          <select id="rol" formControlName="rol">
+            <option value="cliente">Cliente</option>
+            <option value="administrador">Administrador</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>
+            <input type="checkbox" formControlName="active">
+            Activo
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="contraseña">Contraseña:</label>
+        <input type="password" id="contraseña" formControlName="contraseña">
+      </div>
+
+      <button type="submit" class="btn btn-success" [disabled]="!usuarioForm.valid">
+        {{ editingUsuario ? 'Actualizar' : 'Crear' }}
+      </button>
+    </form>
+  </div>
+
+  <div class="users-list">
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre Completo</th>
+          <th>Email</th>
+          <th>Rol</th>
+          <th>Estado</th>
+          <th>Fecha Creación</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of usuarios">
+          <td>{{ usuario.nombres }} {{ usuario.apellidos }}</td>
+          <td>{{ usuario.email }}</td>
+          <td>{{ usuario.rol }}</td>
+          <td>{{ usuario.active ? 'Activo' : 'Inactivo' }}</td>
+          <td>{{ usuario.createdAt | date:'short' }}</td>
+          <td>
+            <button class="btn btn-edit" (click)="toggleForm(usuario)">Editar</button>
+            <button class="btn btn-status" (click)="toggleUserStatus(usuario)">
+              {{ usuario.active ? 'Desactivar' : 'Activar' }}
+            </button>
+            <button class="btn btn-delete" (click)="deleteUsuario(usuario.id!)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

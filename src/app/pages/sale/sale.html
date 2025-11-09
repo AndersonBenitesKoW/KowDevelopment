@@ -1,0 +1,49 @@
+<section class="sale-hero">
+  <div class="container">
+    <div class="hero-content">
+      <h1>Procesar Pago</h1>
+      <p class="hero-subtitle">
+        Revisa los detalles de tu pedido y completa el pago.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="sale-details" *ngIf="pedido">
+  <div class="container">
+    <div class="pedido-card">
+      <h2>Detalles del Pedido</h2>
+      <div class="pedido-info">
+        <p><strong>ID del Pedido:</strong> {{ pedido.id }}</p>
+        <p><strong>Cliente ID:</strong> {{ pedido.clienteId }}</p>
+        <p><strong>Estado:</strong> {{ pedido.estado }}</p>
+        <p><strong>Moneda:</strong> {{ pedido.moneda }}</p>
+        <p><strong>Fecha de Creación:</strong> {{ pedido.createdAt | date:'medium' }}</p>
+      </div>
+
+      <div class="pedido-items">
+        <h3>Items del Pedido</h3>
+        <div class="item" *ngFor="let item of pedido.items">
+          <div class="item-details">
+            <h4>{{ item.concepto }}</h4>
+            <p>Cantidad: {{ item.cantidad }}</p>
+            <p>Precio Unitario: ${{ item.precioUnitario }}</p>
+            <p>Total: ${{ item.total }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pedido-totales">
+        <h3>Totales</h3>
+        <p><strong>Subtotal:</strong> ${{ pedido.totales.subtotal }}</p>
+        <p><strong>Descuento:</strong> ${{ pedido.totales.descuento }}</p>
+        <p><strong>Impuestos:</strong> ${{ pedido.totales.impuestos }}</p>
+        <p><strong>Total a Pagar:</strong> ${{ pedido.totales.total }}</p>
+      </div>
+
+      <div class="payment-actions">
+        <button class="pay-btn" (click)="procesarPago()">Procesar Pago</button>
+      </div>
+    </div>
+  </div>
+</section>

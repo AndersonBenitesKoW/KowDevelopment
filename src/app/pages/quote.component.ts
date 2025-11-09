@@ -1,6 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Cliente, Direccion } from '../models/cliente.model';
+import { ClienteService } from '../services/cliente.service';
+import { UsuarioService } from '../services/usuario.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-quote',
@@ -9,20 +13,39 @@ import { CommonModule } from '@angular/common';
   templateUrl: './quote.component.html',
   styleUrl: './quote.component.scss'
 })
-export class QuoteComponent {
+export class QuoteComponent implements OnInit {
   form: FormGroup;
   submitted = false;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private clienteService: ClienteService,
+    private usuarioService: UsuarioService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
     this.form = this.fb.group({
-      nombre:     ['', Validators.required],
-      email:      ['', [Validators.required, Validators.email]],
-      empresa:    [''],
-      telefono:   [''],
-      tipo:       ['', Validators.required],
-      detalles:   ['', Validators.required],
-      presupuesto: [''],
-      timeline:   ['']
+      nombres:     ['', Validators.required],
+      apellidos:   ['', Validators.required],
+      empresa:     [''],
+      documentoIdentidad: ['', Validators.required],
+      email:       ['', [Validators.required, Validators.email]],
+      telefono:    [''],
+      pais:        ['', Validators.required],
+      ciudad:      ['', Validators.required],
+      distrito:    ['', Validators.required],
+      linea:       ['', Validators.required]
+    });
+  }
+
+  ngOnInit() {
+    // Verificar si viene de registro exitoso y pre-llenar email
+    this.route.queryParams.subscribe(params => {
+      if (params['email']) {
+        this.form.patchValue({
+          email: params['email']
+        });
+      }
     });
   }
 
@@ -30,8 +53,55 @@ export class QuoteComponent {
     this.submitted = true;
     if (this.form.invalid) return;
 
-    alert('Solicitud enviada. ¡Gracias!');
-    this.form.reset();
-    this.submitted = false;
+    const email = this.form.value.email;
+
+    // Verificar si el email existe en usuarios
+    this.usuarioService.verificarEmail(email).subscribe({
+      next: (existe) => {
+        if (existe) {
+          // Proceder con el registro de cliente
+          const cliente: Cliente = {
+            nombres: this.form.value.nombres,
+            apellidos: this.form.value.apellidos,
+            empresa: this.form.value.empresa,
+            documentoIdentidad: this.form.value.documentoIdentidad,
+            email: this.form.value.email,
+            telefono: this.form.value.telefono,
+            createdAt: new Date(),
+            direccion: {
+              pais: this.form.value.pais,
+              ciudad: this.form.value.ciudad,
+              distrito: this.form.value.distrito,
+              linea: this.form.value.linea
+            }
+          };
+
+          this.clienteService.create(cliente).subscribe({
+            next: (response) => {
+              alert('Cliente registrado exitosamente');
+              console.log('Cliente registrado:', response);
+              this.router.navigate(['/pedido'], { queryParams: { clienteId: response.id } });
+            },
+            error: (error) => {
+              console.error('Error al registrar cliente:', error);
+              alert('Error al registrar cliente. Inténtelo de nuevo.');
+            }
+          });
+        } else {
+          // Redirigir al register con estado de retorno
+          alert('Debes registrarte como usuario primero.');
+          this.router.navigate(['/register'], {
+            queryParams: {
+              returnUrl: '/quote',
+              email: email
+            }
+          });
+        }
+      },
+      error: (error) => {
+        console.error('Error al verificar email:', error);
+        alert('Error al verificar email. Inténtelo de nuevo.');
+      }
+    });
   }
 }

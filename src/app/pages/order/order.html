@@ -1,0 +1,52 @@
+<section class="order-hero">
+  <div class="container">
+    <div class="hero-content">
+      <h1>Selecciona tus Servicios</h1>
+      <p class="hero-subtitle">
+        Elige los servicios que necesitas para tu proyecto. Podrás agregar varios al carrito y proceder al pago.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="services-section">
+  <div class="container">
+    <div class="services-header">
+      <h2>Nuestros Servicios</h2>
+      <p>Selecciona los servicios que deseas adquirir</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card" *ngFor="let servicio of servicios">
+        <h3>{{ servicio.nombre }}</h3>
+        <p>{{ servicio.descripcion }}</p>
+        <div class="service-price">${{ servicio.precio }}</div>
+        <button class="add-to-cart-btn" (click)="agregarAlCarrito(servicio)">Agregar al Carrito</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cart-section" *ngIf="carrito.length > 0">
+  <div class="container">
+    <div class="cart-header">
+      <h2>Carrito de Compras</h2>
+    </div>
+
+    <div class="cart-items">
+      <div class="cart-item" *ngFor="let item of carrito; let i = index">
+        <div class="item-info">
+          <h4>{{ item.concepto }}</h4>
+          <p>Cantidad: {{ item.cantidad }}</p>
+          <p>Precio: ${{ item.precioUnitario }}</p>
+        </div>
+        <button class="remove-btn" (click)="quitarDelCarrito(i)">Quitar</button>
+      </div>
+    </div>
+
+    <div class="cart-total">
+      <h3>Total: ${{ totalCarrito }}</h3>
+      <button class="checkout-btn" (click)="procederAlPago()">Proceder al Pago</button>
+    </div>
+  </div>
+</section>
