@@ -19,8 +19,8 @@ export class CategoriaService {
     return this.http.get<Categoria>(`${this.baseUrl}/${id}`);
   }
 
-  create(categoria: Categoria): Observable<Categoria> {
-    return this.http.post<Categoria>(this.baseUrl, categoria);
+  create(categoria: Omit<Categoria, 'id' | 'createdAt'>): Observable<string> {
+    return this.http.post(this.baseUrl, categoria, { responseType: 'text' });
   }
 
   update(id: string, categoria: Categoria): Observable<Categoria> {

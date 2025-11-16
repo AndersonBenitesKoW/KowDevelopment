@@ -58,12 +58,11 @@ export class AdminCategoriesComponent implements OnInit {
 
   onSubmit() {
     if (this.categoriaForm.valid) {
-      const categoriaData = {
-        ...this.categoriaForm.value,
-        createdAt: new Date()
-      };
-
       if (this.editingCategoria) {
+        const categoriaData = {
+          ...this.categoriaForm.value,
+          createdAt: new Date()
+        };
         this.categoriaService.update(this.editingCategoria.id, categoriaData).subscribe({
           next: () => {
             alert('Categoría actualizada exitosamente');
@@ -76,8 +75,9 @@ export class AdminCategoriesComponent implements OnInit {
           }
         });
       } else {
+        const categoriaData = this.categoriaForm.value;
         this.categoriaService.create(categoriaData).subscribe({
-          next: () => {
+          next: (response: string) => {
             alert('Categoría creada exitosamente');
             this.loadCategorias();
             this.toggleForm();
