@@ -25,15 +25,15 @@ export class QuoteComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.form = this.fb.group({
-      nombres:     ['', Validators.required],
-      apellidos:   ['', Validators.required],
+      nombres:     ['', [Validators.required, Validators.minLength(2), Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/)]],
+      apellidos:   ['', [Validators.required, Validators.minLength(2), Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/)]],
       empresa:     [''],
-      documentoIdentidad: ['', Validators.required],
+      documentoIdentidad: ['', [Validators.required, Validators.pattern(/^\d{8}$/)]],
       email:       ['', [Validators.required, Validators.email]],
-      telefono:    [''],
-      pais:        ['', Validators.required],
-      ciudad:      ['', Validators.required],
-      distrito:    ['', Validators.required],
+      telefono:    ['', Validators.pattern(/^\d{9}$/)],
+      pais:        ['', [Validators.required, Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/)]],
+      ciudad:      ['', [Validators.required, Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/)]],
+      distrito:    ['', [Validators.required, Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/)]],
       linea:       ['', Validators.required]
     });
   }

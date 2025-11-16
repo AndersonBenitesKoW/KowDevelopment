@@ -22,8 +22,8 @@ export class AdminUsersComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.usuarioForm = this.fb.group({
-      nombres: ['', Validators.required],
-      apellidos: ['', Validators.required],
+      nombres: ['', [Validators.required, Validators.minLength(2), Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/)]],
+      apellidos: ['', [Validators.required, Validators.minLength(2), Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/)]],
       email: ['', [Validators.required, Validators.email]],
       contraseña: [''],
       rol: ['cliente', Validators.required],

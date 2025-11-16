@@ -27,9 +27,12 @@
               id="nombres"
               formControlName="nombres"
               placeholder="Tus nombres"
+              oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')"
               [class.error]="submitted && form.get('nombres')?.invalid">
             <div class="error-message" *ngIf="submitted && form.get('nombres')?.invalid">
-              Los nombres son obligatorios
+              <span *ngIf="form.get('nombres')?.errors?.['required']">Los nombres son obligatorios</span>
+              <span *ngIf="form.get('nombres')?.errors?.['minlength']">Mínimo 2 caracteres</span>
+              <span *ngIf="form.get('nombres')?.errors?.['pattern']">Solo se permiten letras</span>
             </div>
           </div>
 
@@ -40,9 +43,12 @@
               id="apellidos"
               formControlName="apellidos"
               placeholder="Tus apellidos"
+              oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')"
               [class.error]="submitted && form.get('apellidos')?.invalid">
             <div class="error-message" *ngIf="submitted && form.get('apellidos')?.invalid">
-              Los apellidos son obligatorios
+              <span *ngIf="form.get('apellidos')?.errors?.['required']">Los apellidos son obligatorios</span>
+              <span *ngIf="form.get('apellidos')?.errors?.['minlength']">Mínimo 2 caracteres</span>
+              <span *ngIf="form.get('apellidos')?.errors?.['pattern']">Solo se permiten letras</span>
             </div>
           </div>
         </div>
@@ -64,9 +70,12 @@
               id="documentoIdentidad"
               formControlName="documentoIdentidad"
               placeholder="Tu documento de identidad"
+              maxlength="8"
+              oninput="this.value = this.value.replace(/\D/g, '')"
               [class.error]="submitted && form.get('documentoIdentidad')?.invalid">
             <div class="error-message" *ngIf="submitted && form.get('documentoIdentidad')?.invalid">
-              El documento de identidad es obligatorio
+              <span *ngIf="form.get('documentoIdentidad')?.errors?.['required']">El documento de identidad es obligatorio</span>
+              <span *ngIf="form.get('documentoIdentidad')?.errors?.['pattern']">Debe ser exactamente 8 dígitos</span>
             </div>
           </div>
         </div>
@@ -91,7 +100,13 @@
               type="tel"
               id="telefono"
               formControlName="telefono"
-              placeholder="+51 987 654 321">
+              placeholder="+51 987 654 321"
+              maxlength="9"
+              oninput="this.value = this.value.replace(/\D/g, '')"
+              [class.error]="submitted && form.get('telefono')?.invalid">
+            <div class="error-message" *ngIf="submitted && form.get('telefono')?.invalid">
+              <span *ngIf="form.get('telefono')?.errors?.['pattern']">Debe ser exactamente 9 dígitos</span>
+            </div>
           </div>
         </div>
 
@@ -103,9 +118,11 @@
               id="pais"
               formControlName="pais"
               placeholder="Tu país"
+              oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')"
               [class.error]="submitted && form.get('pais')?.invalid">
             <div class="error-message" *ngIf="submitted && form.get('pais')?.invalid">
-              El país es obligatorio
+              <span *ngIf="form.get('pais')?.errors?.['required']">El país es obligatorio</span>
+              <span *ngIf="form.get('pais')?.errors?.['pattern']">Solo se permiten letras</span>
             </div>
           </div>
 
@@ -116,9 +133,11 @@
               id="ciudad"
               formControlName="ciudad"
               placeholder="Tu ciudad"
+              oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')"
               [class.error]="submitted && form.get('ciudad')?.invalid">
             <div class="error-message" *ngIf="submitted && form.get('ciudad')?.invalid">
-              La ciudad es obligatoria
+              <span *ngIf="form.get('ciudad')?.errors?.['required']">La ciudad es obligatoria</span>
+              <span *ngIf="form.get('ciudad')?.errors?.['pattern']">Solo se permiten letras</span>
             </div>
           </div>
         </div>
@@ -131,9 +150,11 @@
               id="distrito"
               formControlName="distrito"
               placeholder="Tu distrito"
+              oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')"
               [class.error]="submitted && form.get('distrito')?.invalid">
             <div class="error-message" *ngIf="submitted && form.get('distrito')?.invalid">
-              El distrito es obligatorio
+              <span *ngIf="form.get('distrito')?.errors?.['required']">El distrito es obligatorio</span>
+              <span *ngIf="form.get('distrito')?.errors?.['pattern']">Solo se permiten letras</span>
             </div>
           </div>
 
