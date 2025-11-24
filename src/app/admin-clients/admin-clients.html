@@ -1,0 +1,154 @@
+<div class="admin-clients">
+  <h1>Administrar Clientes</h1>
+
+  <!-- Notificación -->
+  <div class="notification" *ngIf="notificationMessage" [ngClass]="notificationType">
+    {{ notificationMessage }}
+    <button class="close-btn" (click)="notificationMessage = ''">&times;</button>
+  </div>
+
+  <button class="btn btn-primary" (click)="toggleForm()">
+    {{ showForm ? 'Cancelar' : 'Nuevo Cliente' }}
+  </button>
+
+  <div class="form-container" *ngIf="showForm">
+    <form [formGroup]="clienteForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nombres">Nombres:</label>
+          <input type="text" id="nombres" formControlName="nombres" oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')" [class.error]="clienteForm.get('nombres')?.invalid && clienteForm.get('nombres')?.touched">
+          <div class="error-message" *ngIf="clienteForm.get('nombres')?.invalid && clienteForm.get('nombres')?.touched">
+            <span *ngIf="clienteForm.get('nombres')?.errors?.['required']">Los nombres son requeridos</span>
+            <span *ngIf="clienteForm.get('nombres')?.errors?.['minlength']">Mínimo 2 caracteres</span>
+            <span *ngIf="clienteForm.get('nombres')?.errors?.['pattern']">Solo se permiten letras</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="apellidos">Apellidos:</label>
+          <input type="text" id="apellidos" formControlName="apellidos" oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')" [class.error]="clienteForm.get('apellidos')?.invalid && clienteForm.get('apellidos')?.touched">
+          <div class="error-message" *ngIf="clienteForm.get('apellidos')?.invalid && clienteForm.get('apellidos')?.touched">
+            <span *ngIf="clienteForm.get('apellidos')?.errors?.['required']">Los apellidos son requeridos</span>
+            <span *ngIf="clienteForm.get('apellidos')?.errors?.['minlength']">Mínimo 2 caracteres</span>
+            <span *ngIf="clienteForm.get('apellidos')?.errors?.['pattern']">Solo se permiten letras</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="empresa">Empresa:</label>
+          <input type="text" id="empresa" formControlName="empresa">
+        </div>
+
+        <div class="form-group">
+          <label for="documentoIdentidad">Documento de Identidad:</label>
+          <input type="text" id="documentoIdentidad" formControlName="documentoIdentidad" maxlength="8" oninput="this.value = this.value.replace(/[^0-9]/g, '')" [class.error]="clienteForm.get('documentoIdentidad')?.invalid && clienteForm.get('documentoIdentidad')?.touched">
+          <div class="error-message" *ngIf="clienteForm.get('documentoIdentidad')?.invalid && clienteForm.get('documentoIdentidad')?.touched">
+            <span *ngIf="clienteForm.get('documentoIdentidad')?.errors?.['required']">El documento es requerido</span>
+            <span *ngIf="clienteForm.get('documentoIdentidad')?.errors?.['pattern']">Debe tener 8 dígitos</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" formControlName="email" [class.error]="clienteForm.get('email')?.invalid && clienteForm.get('email')?.touched">
+          <div class="error-message" *ngIf="clienteForm.get('email')?.invalid && clienteForm.get('email')?.touched">
+            <span *ngIf="clienteForm.get('email')?.errors?.['required']">El email es requerido</span>
+            <span *ngIf="clienteForm.get('email')?.errors?.['email']">Email inválido</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="telefono">Teléfono:</label>
+          <input type="text" id="telefono" formControlName="telefono" maxlength="9" oninput="this.value = this.value.replace(/[^0-9]/g, '')" [class.error]="clienteForm.get('telefono')?.invalid && clienteForm.get('telefono')?.touched">
+          <div class="error-message" *ngIf="clienteForm.get('telefono')?.invalid && clienteForm.get('telefono')?.touched">
+            <span *ngIf="clienteForm.get('telefono')?.errors?.['pattern']">Debe tener 9 dígitos</span>
+          </div>
+        </div>
+      </div>
+
+      <h3>Dirección</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="pais">País:</label>
+          <input type="text" id="pais" formControlName="pais" oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')" [class.error]="clienteForm.get('pais')?.invalid && clienteForm.get('pais')?.touched">
+          <div class="error-message" *ngIf="clienteForm.get('pais')?.invalid && clienteForm.get('pais')?.touched">
+            <span *ngIf="clienteForm.get('pais')?.errors?.['required']">El país es requerido</span>
+            <span *ngIf="clienteForm.get('pais')?.errors?.['pattern']">Solo se permiten letras</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="ciudad">Ciudad:</label>
+          <input type="text" id="ciudad" formControlName="ciudad" oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')" [class.error]="clienteForm.get('ciudad')?.invalid && clienteForm.get('ciudad')?.touched">
+          <div class="error-message" *ngIf="clienteForm.get('ciudad')?.invalid && clienteForm.get('ciudad')?.touched">
+            <span *ngIf="clienteForm.get('ciudad')?.errors?.['required']">La ciudad es requerida</span>
+            <span *ngIf="clienteForm.get('ciudad')?.errors?.['pattern']">Solo se permiten letras</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="distrito">Distrito:</label>
+          <input type="text" id="distrito" formControlName="distrito" oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')" [class.error]="clienteForm.get('distrito')?.invalid && clienteForm.get('distrito')?.touched">
+          <div class="error-message" *ngIf="clienteForm.get('distrito')?.invalid && clienteForm.get('distrito')?.touched">
+            <span *ngIf="clienteForm.get('distrito')?.errors?.['required']">El distrito es requerido</span>
+            <span *ngIf="clienteForm.get('distrito')?.errors?.['pattern']">Solo se permiten letras</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="linea">Dirección:</label>
+          <input type="text" id="linea" formControlName="linea" [class.error]="clienteForm.get('linea')?.invalid && clienteForm.get('linea')?.touched">
+          <div class="error-message" *ngIf="clienteForm.get('linea')?.invalid && clienteForm.get('linea')?.touched">
+            <span *ngIf="clienteForm.get('linea')?.errors?.['required']">La dirección es requerida</span>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-success" [disabled]="!clienteForm.valid">
+        {{ editingCliente ? 'Actualizar' : 'Crear' }}
+      </button>
+    </form>
+  </div>
+
+  <div class="search-container">
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Buscar por DNI" maxlength="8" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+    <button class="btn btn-primary" (click)="searchCliente()">Buscar</button>
+    <button class="btn btn-secondary" (click)="loadClientes()">Mostrar Todos</button>
+  </div>
+
+  <div class="clients-list">
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre Completo</th>
+          <th>Email</th>
+          <th>Documento</th>
+          <th>Teléfono</th>
+          <th>Empresa</th>
+          <th>Fecha Creación</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cliente of clientes">
+          <td>{{ cliente.nombres }} {{ cliente.apellidos }}</td>
+          <td>{{ cliente.email }}</td>
+          <td>{{ cliente.documentoIdentidad }}</td>
+          <td>{{ cliente.telefono }}</td>
+          <td>{{ cliente.empresa }}</td>
+          <td>{{ cliente.createdAt | date:'short' }}</td>
+          <td>
+            <button class="btn btn-edit" (click)="toggleForm(cliente)">Editar</button>
+            <button class="btn btn-delete" (click)="deleteCliente(cliente.id!)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
