@@ -51,8 +51,9 @@
         <!-- Enlaces de administración solo para administradores -->
         <div class="admin-links" *ngIf="isAdmin()">
           <div class="dropdown">
-            <button class="dropdown-btn" (click)="toggleCruds($event)">Cruds ▼</button>
+            <button class="dropdown-btn" (click)="toggleCruds($event)">Admin ▼</button>
             <div class="dropdown-content" [class.show]="crudsOpen">
+              <a routerLink="admin/dashboard" routerLinkActive="active">Dashboard</a>
               <a routerLink="admin/categorias" routerLinkActive="active">Categorías</a>
               <a routerLink="admin/usuarios" routerLinkActive="active">Usuarios</a>
               <a routerLink="admin/clientes" routerLinkActive="active">Clientes</a>

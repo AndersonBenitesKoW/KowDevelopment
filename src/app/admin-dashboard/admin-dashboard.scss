@@ -1,0 +1,167 @@
+.card {
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+}
+
+.badge {
+  font-size: 0.75rem;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+
+.card-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+}
+
+h1 {
+  color: #2c3e50;
+  font-weight: 700;
+}
+
+.card-title {
+  color: #495057;
+  font-weight: 600;
+}
+
+.text-primary {
+  color: #007bff !important;
+}
+
+.text-success {
+  color: #28a745 !important;
+}
+
+.text-warning {
+  color: #ffc107 !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.cursor-pointer:hover {
+  background-color: #f8f9fa !important;
+}
+
+.cursor-pointer {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+.btn {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+.chart-container {
+  display: flex;
+  align-items: end;
+  justify-content: space-around;
+  height: 200px;
+  padding: 20px 0;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.chart-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60px;
+  background-color: #f6b219;
+  border-radius: 4px 4px 0 0;
+  position: relative;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  min-height: 20px;
+}
+
+.chart-bar:hover {
+  background-color: #e5a518;
+}
+
+.bar-label {
+  position: absolute;
+  bottom: -25px;
+  font-size: 10px;
+  text-align: center;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bar-value {
+  position: absolute;
+  top: -20px;
+  font-size: 9px;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+/* Centrar el dashboard */
+.container-fluid {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.row {
+  justify-content: center;
+}
+
+/* Centrar elementos del panel lateral */
+.col-lg-4 .card-body {
+  text-align: center;
+}
+
+.card-body .chart-container {
+  margin: 0 auto;
+}
+
+.card-body .table-responsive {
+  margin: 0 auto;
+}
+
+.card-body .btn {
+  display: block;
+  margin: 0 auto;
+}
+
+/* Centrar headers de tarjetas */
+.card-header {
+  text-align: center !important;
+}
+
+.card-header h5, .card-header h6 {
+  margin: 0;
+  text-align: center;
+}
+
+.card-body h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.card-body .card-title {
+  font-size: 1.1rem;
+}

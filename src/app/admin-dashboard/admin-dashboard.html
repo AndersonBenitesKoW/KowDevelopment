@@ -1,0 +1,217 @@
+<div class="container-fluid mt-4">
+  <h1 class="mb-4">Dashboard Administrativo</h1>
+
+  <!-- Loading indicator -->
+  <div *ngIf="isLoading" class="text-center my-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+    <p class="mt-2">Cargando datos del dashboard...</p>
+  </div>
+
+  <!-- Main content -->
+  <div *ngIf="!isLoading">
+    <!-- Métricas principales -->
+  <div class="row mb-4">
+    <div class="col-md-4">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">Total Usuarios Registrados</h5>
+          <h2 class="text-primary">{{ totalUsuarios }}</h2>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">Total Ventas</h5>
+          <h2 class="text-success">{{ totalVentas }}</h2>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">Ingresos Totales</h5>
+          <h2 class="text-warning">S/ {{ totalIngresos | number:'1.2-2' }}</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filtros -->
+  <div class="card mb-4">
+    <div class="card-header">
+      <h5>Filtros</h5>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="filterForm" class="row g-3">
+        <div class="col-md-3">
+          <label for="fechaInicio" class="form-label">Fecha Inicio</label>
+          <input type="date" class="form-control" id="fechaInicio" formControlName="fechaInicio">
+        </div>
+        <div class="col-md-3">
+          <label for="fechaFin" class="form-label">Fecha Fin</label>
+          <input type="date" class="form-control" id="fechaFin" formControlName="fechaFin">
+        </div>
+        <div class="col-md-3">
+          <label for="rol" class="form-label">Rol de Usuario</label>
+          <select class="form-select" id="rol" formControlName="rol">
+            <option value="">Todos</option>
+            <option value="cliente">Cliente</option>
+            <option value="administrador">Admin</option>
+          </select>
+        </div>
+        <div class="col-md-3 d-flex align-items-end">
+          <button type="button" class="btn btn-secondary me-2" (click)="resetFilters()">Limpiar Filtros</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Contenido principal (izquierda) -->
+    <div class="col-lg-8">
+      <!-- Tabla de Usuarios -->
+      <div class="card mb-4">
+        <div class="card-header">
+          <h5>Usuarios Registrados ({{ filteredUsuarios.length }})</h5>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nombres</th>
+                  <th>Apellidos</th>
+                  <th>Email</th>
+                  <th>Rol</th>
+                  <th>Estado</th>
+                  <th>Fecha Registro</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let usuario of filteredUsuarios">
+                  <td>{{ usuario.id }}</td>
+                  <td>{{ usuario.nombres }}</td>
+                  <td>{{ usuario.apellidos }}</td>
+                  <td>{{ usuario.email }}</td>
+                  <td>
+                    <span class="badge" [ngClass]="usuario.rol === 'admin' ? 'bg-danger' : 'bg-primary'">
+                      {{ usuario.rol }}
+                    </span>
+                  </td>
+                  <td>
+                    <span class="badge" [ngClass]="usuario.active ? 'bg-success' : 'bg-secondary'">
+                      {{ usuario.active ? 'Activo' : 'Inactivo' }}
+                    </span>
+                  </td>
+                  <td>{{ usuario.createdAt | date:'short' }}</td>
+                  <td>
+                    <button class="btn btn-sm btn-info" (click)="viewUserDetails(usuario)">Ver Detalles</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabla de Ventas -->
+      <div class="card">
+        <div class="card-header">
+          <h5>Ventas ({{ filteredVentas.length }})</h5>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Número</th>
+                  <th>Cliente ID</th>
+                  <th>Total</th>
+                  <th>Fecha</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let venta of filteredVentas">
+                  <td>{{ venta.id }}</td>
+                  <td>{{ venta.numero }}</td>
+                  <td>{{ venta.clienteId }}</td>
+                  <td>S/ {{ venta.totales.total | number:'1.2-2' }}</td>
+                  <td>{{ venta.createdAt | date:'short' }}</td>
+                  <td>
+                    <button class="btn btn-sm btn-info" (click)="viewSaleDetails(venta)">Ver Detalles</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      </div> <!-- End main content -->
+    </div>
+
+    <!-- Panel lateral (derecha) -->
+    <div class="col-lg-4">
+      <!-- Gráfico de Productos Más Vendidos -->
+      <div class="card mb-4">
+        <div class="card-header">
+          <h5>Top 5 Productos - Ingresos</h5>
+        </div>
+        <div class="card-body">
+          <div class="chart-container">
+            <div *ngFor="let producto of topProductos.slice(0, 5); let i = index"
+                 class="chart-bar"
+                 [style.height.%]="getBarHeight(producto.ingresosTotales)"
+                 [title]="'S/ ' + producto.ingresosTotales">
+              <div class="bar-label">{{ producto.concepto.length > 12 ? (producto.concepto | slice:0:12) + '...' : producto.concepto }}</div>
+              <div class="bar-value">S/ {{ producto.ingresosTotales | number:'1.0-0' }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabla de Productos Más Vendidos -->
+      <div class="card">
+        <div class="card-header">
+          <h6>Productos Más Vendidos</h6>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th>Producto</th>
+                  <th>Ingresos</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let producto of topProductos.slice(0, 8)"
+                    class="cursor-pointer"
+                    (click)="viewProductDetails(producto)"
+                    title="Click para ver detalles">
+                  <td class="text-truncate" style="max-width: 120px;">
+                    {{ producto.concepto.length > 15 ? (producto.concepto | slice:0:15) + '...' : producto.concepto }}
+                  </td>
+                  <td class="text-end">
+                    <span class="badge bg-warning text-dark">S/ {{ producto.ingresosTotales | number:'1.0-0' }}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="mt-3">
+            <button class="btn btn-outline-primary btn-sm w-100" (click)="viewAllProducts()">
+              Ver Todos los Productos
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

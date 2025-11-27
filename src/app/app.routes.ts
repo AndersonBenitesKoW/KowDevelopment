@@ -16,6 +16,7 @@ import { NewsNegocios } from './pages/news-negocios/news-negocios';
 import { AdminCategoriesComponent } from './admin-categories/admin-categories';
 import { AdminUsersComponent } from './admin-users/admin-users';
 import { AdminClientsComponent } from './admin-clients/admin-clients';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard';
 import { AdminGuard } from './guards/admin.guard';
 
 export const routes: Routes = [
@@ -32,6 +33,7 @@ export const routes: Routes = [
   { path: 'noticias/negocios', component: NewsNegocios, title: 'Negocios y Economía | POLYLINE' },
   { path: 'login', component: LoginComponent, title: 'Iniciar Sesión | POLYLINE' },
   { path: 'register', component: RegisterComponent, title: 'Crear Cuenta | POLYLINE' },
+  { path: 'admin/dashboard', component: AdminDashboardComponent, canActivate: [AdminGuard], title: 'Dashboard Administrativo' },
   { path: 'admin/categorias', component: AdminCategoriesComponent, canActivate: [AdminGuard], title: 'Administrar Categorías' },
   { path: 'admin/usuarios', component: AdminUsersComponent, canActivate: [AdminGuard], title: 'Administrar Usuarios' },
   { path: 'admin/clientes', component: AdminClientsComponent, canActivate: [AdminGuard], title: 'Administrar Clientes' },
