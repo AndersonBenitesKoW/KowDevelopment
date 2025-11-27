@@ -31,6 +31,7 @@ export class AdminDashboardComponent implements OnInit {
   filteredVentas: Venta[] = [];
   topProductos: ProductoStats[] = [];
   isLoading = true;
+  showAllProducts = false;
 
 
 
@@ -155,8 +156,7 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   viewAllProducts() {
-    // Could open a modal or navigate to a detailed products page
-    alert(`Total de productos únicos: ${this.topProductos.length}\nTop producto: ${this.topProductos[0]?.concepto || 'N/A'} con S/ ${this.topProductos[0]?.ingresosTotales || 0}`);
+    this.showAllProducts = !this.showAllProducts;
   }
 
   viewUserDetails(usuario: Usuario) {
